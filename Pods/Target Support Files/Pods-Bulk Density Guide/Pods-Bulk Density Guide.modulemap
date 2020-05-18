@@ -1,0 +1,6 @@
+framework module Pods_Bulk_Density_Guide {
+  umbrella header "Pods-Bulk Density Guide-umbrella.h"
+
+  export *
+  module * { export * }
+}
