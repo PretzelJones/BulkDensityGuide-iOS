@@ -12,6 +12,7 @@ var sharedData = [String]()
 
 func convertArray() { //fix duplicates by converting to set then back
     sharedData = Array(Set(sharedData))
+    sharedData.sort()
 }
 
 struct Keys {
@@ -1747,7 +1748,8 @@ class ViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        hideKeyboardWhenTappedAround()
+        hideKeyboardWhenTappedAround() //hides keyboard as user taps anywhere else on screen
+        retrieveArray() //retrieves saved array data from userDefaults
         
     }
     
@@ -1818,7 +1820,6 @@ extension ViewController: UITableViewDelegate {
                 } else {
                     data = self.materialData[indexPath.row]
                 }
-                print(data)
                 sharedData.append(data)
                 saveArray()
                 completionHandler(true)
@@ -1859,6 +1860,7 @@ extension ViewController: UITableViewDataSource {
 }
 
 extension ViewController: UISearchBarDelegate {
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchBar.setShowsCancelButton(true, animated: true)
         searchMaterial = materialData.filter {return $0.contains(searchText)}
@@ -1873,20 +1875,20 @@ extension ViewController: UISearchBarDelegate {
         tableView.reloadData()
     }
     
-//        func showSearchBar() {
-//            let searchController = UISearchController(searchResultsController: nil)
-//            searchController.searchBar.delegate = self
-//            //searchController.dimsBackgroundDuringPresentation = false
-//            searchController.hidesNavigationBarDuringPresentation = true
-//            navigationItem.hidesSearchBarWhenScrolling = true
-//            //true for hiding, false for keep showing while scrolling
-//            searchController.searchBar.sizeToFit()
-//            searchController.searchBar.returnKeyType = UIReturnKeyType.search
-//            searchController.searchBar.placeholder = "Search here"
-//            navigationItem.searchController = searchController
+//    func showSearchBar() { //enables auto hiding of searchBar - not working
+//        let searchController = UISearchController(searchResultsController: nil)
+//        searchController.searchBar.delegate = self
+//        //searchController.dimsBackgroundDuringPresentation = false
+//        searchController.hidesNavigationBarDuringPresentation = true
+//        navigationItem.hidesSearchBarWhenScrolling = true
+//        //true for hiding, false for keep showing while scrolling
+//        searchController.searchBar.sizeToFit()
+//        searchController.searchBar.returnKeyType = UIReturnKeyType.search
+//        searchController.searchBar.placeholder = "Search here"
+//        navigationItem.searchController = searchController
 //
 //
-//        }
+//    }
 }
 
 extension UIViewController { //provides method for hiding the keyboard
