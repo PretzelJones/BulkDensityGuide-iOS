@@ -59,4 +59,22 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
             return configuration
     }
     
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let copyAction = UIContextualAction(style: .normal, title: "Copy") { (_, _, completionHandler) in
+            
+            let cell = tableView.cellForRow(at: indexPath)
+            UIPasteboard.general.string = cell?.textLabel?.text
+            
+            completionHandler(true)
+        }
+        if #available(iOS 13.0, *) {
+            copyAction.image = UIImage(systemName: "doc.on.clipboard")
+        } else {
+            // fall back to default action
+        }
+        copyAction.backgroundColor = .systemBlue
+        let configuration = UISwipeActionsConfiguration(actions: [copyAction])
+        return configuration
+    }
+    
 }

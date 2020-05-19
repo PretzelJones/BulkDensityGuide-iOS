@@ -37,7 +37,7 @@ class ViewController: UIViewController {
     
     @IBOutlet var tableView: UITableView!
     
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    //    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     @IBOutlet weak var visualEffectView: UIVisualEffectView!
     
@@ -1802,6 +1802,25 @@ extension ViewController: UITableViewDelegate {
         print(self.materialData[indexPath.row], "selected!")
     }
     
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let copyAction = UIContextualAction(style: .normal, title: "Copy") { (_, _, completionHandler) in
+            
+            let cell = tableView.cellForRow(at: indexPath)
+            UIPasteboard.general.string = cell?.textLabel?.text
+            
+            completionHandler(true)
+        }
+        if #available(iOS 13.0, *) {
+            copyAction.image = UIImage(systemName: "doc.on.clipboard")
+        } else {
+            // fall back to default action
+        }
+        copyAction.backgroundColor = .systemBlue
+        let configuration = UISwipeActionsConfiguration(actions: [copyAction])
+        return configuration
+    }
+    
+    
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath)
         -> UISwipeActionsConfiguration? {
             let favoriteAction = UIContextualAction(style: .normal, title: "Bookmark") { (_, _, completionHandler) in
@@ -1871,7 +1890,6 @@ extension ViewController: UISearchBarDelegate {
         navigationItem.hidesSearchBarWhenScrolling = false
         navigationItem.searchController = searchController
         searchController.searchBar.delegate = self
-        //searchController.dimsBackgroundDuringPresentation = false
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.sizeToFit()
         searchController.searchBar.returnKeyType = UIReturnKeyType.search
