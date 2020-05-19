@@ -15,9 +15,7 @@ class FavoritesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //retrieveArray()
         convertArray()
-        
     }
 }
 
@@ -32,7 +30,6 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.numberOfLines = 0
-        //sharedData.sort()
         cell.textLabel?.text = sharedData[indexPath.row]
         return cell
     }

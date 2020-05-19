@@ -16,7 +16,6 @@
 		14C5C12522249EA600F22733 /* Bulk_Density_GuideTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C5C12422249EA600F22733 /* Bulk_Density_GuideTests.swift */; };
 		14C5C13022249EA600F22733 /* Bulk_Density_GuideUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C5C12F22249EA600F22733 /* Bulk_Density_GuideUITests.swift */; };
 		14C5C14422288A5600F22733 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 14C5C14322288A5500F22733 /* GoogleService-Info.plist */; };
-		14C7112124715E6800DCC03B /* bookmark_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 14C7112024715E6700DCC03B /* bookmark_blue.png */; };
 		AEADDD06EDE08EE52B9EE47C /* Pods_Bulk_Density_Guide.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A945F7D2C9FC3E3356C864D7 /* Pods_Bulk_Density_Guide.framework */; };
 		CD6E0232996A7C0A96F65472 /* Pods_Bulk_Density_GuideTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D09268140CD9BEF1EED374E /* Pods_Bulk_Density_GuideTests.framework */; };
 		F372AFE7C5DBEDDA6B8A0DB5 /* Pods_Bulk_Density_GuideUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD4A706F2CAB6CB9BD12579F /* Pods_Bulk_Density_GuideUITests.framework */; };
@@ -56,7 +55,6 @@
 		14C5C12F22249EA600F22733 /* Bulk_Density_GuideUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bulk_Density_GuideUITests.swift; sourceTree = "<group>"; };
 		14C5C13122249EA600F22733 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14C5C14322288A5500F22733 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		14C7112024715E6700DCC03B /* bookmark_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bookmark_blue.png; sourceTree = "<group>"; };
 		2E3013CA9672A3211C4D8630 /* Pods-Bulk Density GuideTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bulk Density GuideTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bulk Density GuideTests/Pods-Bulk Density GuideTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8D09268140CD9BEF1EED374E /* Pods_Bulk_Density_GuideTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bulk_Density_GuideTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E56D27ACDB2392EFEEAE5AC /* Pods-Bulk Density GuideUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bulk Density GuideUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bulk Density GuideUITests/Pods-Bulk Density GuideUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -121,15 +119,14 @@
 		14C5C10E22249EA400F22733 /* Bulk Density Guide */ = {
 			isa = PBXGroup;
 			children = (
+				14C5C11122249EA400F22733 /* ViewController.swift */,
+				149CFAB72465FBEF007DB1E7 /* FavoritesViewController.swift */,
+				14C5C11322249EA400F22733 /* Main.storyboard */,
+				14C5C10F22249EA400F22733 /* AppDelegate.swift */,
+				14C5C11822249EA600F22733 /* LaunchScreen.storyboard */,
+				14C5C11622249EA600F22733 /* Assets.xcassets */,
 				144BFF60246DB5450093DF48 /* Bulk Density Guide.entitlements */,
 				14C5C14322288A5500F22733 /* GoogleService-Info.plist */,
-				14C5C10F22249EA400F22733 /* AppDelegate.swift */,
-				14C5C11122249EA400F22733 /* ViewController.swift */,
-				14C5C11322249EA400F22733 /* Main.storyboard */,
-				149CFAB72465FBEF007DB1E7 /* FavoritesViewController.swift */,
-				14C5C11622249EA600F22733 /* Assets.xcassets */,
-				14C7112024715E6700DCC03B /* bookmark_blue.png */,
-				14C5C11822249EA600F22733 /* LaunchScreen.storyboard */,
 				14C5C11B22249EA600F22733 /* Info.plist */,
 			);
 			path = "Bulk Density Guide";
@@ -291,7 +288,6 @@
 				14C5C14422288A5600F22733 /* GoogleService-Info.plist in Resources */,
 				14C5C11722249EA600F22733 /* Assets.xcassets in Resources */,
 				14C5C11522249EA400F22733 /* Main.storyboard in Resources */,
-				14C7112124715E6800DCC03B /* bookmark_blue.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
