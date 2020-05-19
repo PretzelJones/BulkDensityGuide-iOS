@@ -53,7 +53,7 @@
             </objects>
             <point key="canvasLocation" x="2098.5507246376815" y="790.84821428571422"/>
         </scene>
-        <!--Bulk Density Guide-->
+        <!--Material Guide-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Bulk_Density_Guide" customModuleProvider="target" sceneMemberID="viewController">
@@ -61,16 +61,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar alpha="0.94999999999999996" contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="gCj-fX-6cd">
-                                <rect key="frame" x="0.0" y="144" width="375" height="44"/>
+                            <searchBar alpha="0.94999999999999996" contentMode="center" searchBarStyle="minimal" placeholder="Search material" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gCj-fX-6cd">
+                                <rect key="frame" x="0.0" y="88" width="375" height="71"/>
                                 <color key="barTintColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <scopeButtonTitles>
+                                    <string>Title</string>
+                                    <string>Title</string>
+                                </scopeButtonTitles>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="ktW-Kp-xBH"/>
                                 </connections>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FIW-76-VlF">
-                                <rect key="frame" x="0.0" y="188" width="375" height="590"/>
+                                <rect key="frame" x="0.0" y="88" width="375" height="690"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="ITj-Kh-KYv">
@@ -87,12 +91,6 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="xS3-yr-xaf"/>
                                 </connections>
                             </tableView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hapman_title" translatesAutoresizingMaskIntoConstraints="NO" id="omQ-co-hx5">
-                                <rect key="frame" x="0.0" y="82" width="375" height="62"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="62" id="qqM-pF-taD"/>
-                                </constraints>
-                            </imageView>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7w2-im-C6d">
                                 <rect key="frame" x="0.0" y="82" width="375" height="696"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="SC6-CM-p2v">
@@ -104,16 +102,6 @@
                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="mp8-xY-F5z">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="696"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                <subviews>
-                                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="KoF-xF-s6I">
-                                                        <rect key="frame" x="169" y="329.66666666666669" width="37" height="37"/>
-                                                        <color key="color" red="0.18039215689999999" green="0.41568627450000001" blue="0.65490196079999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                    </activityIndicatorView>
-                                                </subviews>
-                                                <constraints>
-                                                    <constraint firstItem="KoF-xF-s6I" firstAttribute="centerX" secondItem="mp8-xY-F5z" secondAttribute="centerX" id="7jf-7a-DdQ"/>
-                                                    <constraint firstItem="KoF-xF-s6I" firstAttribute="centerY" secondItem="mp8-xY-F5z" secondAttribute="centerY" id="pQz-CT-Jqi"/>
-                                                </constraints>
                                             </view>
                                             <vibrancyEffect>
                                                 <blurEffect style="light"/>
@@ -132,26 +120,35 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="7w2-im-C6d" firstAttribute="trailing" secondItem="omQ-co-hx5" secondAttribute="trailing" id="0FZ-cc-GtL"/>
-                            <constraint firstItem="gCj-fX-6cd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="2Vi-fw-dNb"/>
-                            <constraint firstItem="omQ-co-hx5" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="2an-M3-12R"/>
-                            <constraint firstItem="FIW-76-VlF" firstAttribute="top" secondItem="gCj-fX-6cd" secondAttribute="bottom" id="4JQ-Jg-I8y"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="FIW-76-VlF" secondAttribute="trailing" id="4na-oo-EVo"/>
+                            <constraint firstItem="gCj-fX-6cd" firstAttribute="leading" secondItem="FIW-76-VlF" secondAttribute="leading" id="Bcf-4Z-k1q"/>
                             <constraint firstItem="7w2-im-C6d" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="I3W-Z6-LdJ"/>
                             <constraint firstItem="FIW-76-VlF" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Iii-Cr-xEA"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="FIW-76-VlF" secondAttribute="bottom" id="LIV-gc-8LD"/>
-                            <constraint firstAttribute="trailing" secondItem="omQ-co-hx5" secondAttribute="trailing" id="Pt3-Dj-Gmu"/>
-                            <constraint firstItem="FIW-76-VlF" firstAttribute="top" secondItem="omQ-co-hx5" secondAttribute="bottom" constant="44" id="UKN-d9-ZpO"/>
-                            <constraint firstItem="7w2-im-C6d" firstAttribute="top" secondItem="omQ-co-hx5" secondAttribute="top" id="Weo-Lz-qUJ"/>
-                            <constraint firstItem="gCj-fX-6cd" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="ZmY-6z-S67"/>
-                            <constraint firstItem="gCj-fX-6cd" firstAttribute="top" secondItem="omQ-co-hx5" secondAttribute="bottom" id="fj9-5r-6G6"/>
+                            <constraint firstItem="gCj-fX-6cd" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="TEB-6L-6uH"/>
+                            <constraint firstItem="FIW-76-VlF" firstAttribute="top" secondItem="gCj-fX-6cd" secondAttribute="bottom" id="TRq-5O-eWc"/>
+                            <constraint firstItem="7w2-im-C6d" firstAttribute="bottom" secondItem="FIW-76-VlF" secondAttribute="bottom" id="ZxU-1Q-YCF"/>
+                            <constraint firstItem="7w2-im-C6d" firstAttribute="trailing" secondItem="FIW-76-VlF" secondAttribute="trailing" id="elu-bd-AFE"/>
                             <constraint firstItem="7w2-im-C6d" firstAttribute="leading" secondItem="FIW-76-VlF" secondAttribute="leading" id="gXx-55-ms3"/>
-                            <constraint firstItem="omQ-co-hx5" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="-6" id="k29-81-ugi"/>
+                            <constraint firstItem="7w2-im-C6d" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="-6" id="hk5-ts-CE3"/>
+                            <constraint firstItem="FIW-76-VlF" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="vRB-EQ-fJ2"/>
+                            <constraint firstItem="gCj-fX-6cd" firstAttribute="trailing" secondItem="FIW-76-VlF" secondAttribute="trailing" id="wXL-ju-sZn"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="gCj-fX-6cd"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="Bcf-4Z-k1q"/>
+                                <exclude reference="TEB-6L-6uH"/>
+                                <exclude reference="wXL-ju-sZn"/>
+                            </mask>
+                        </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Bulk Density Guide" id="496-JK-zCf">
-                        <barButtonItem key="leftBarButtonItem" systemItem="bookmarks" id="Rj3-MX-86O">
+                    <navigationItem key="navigationItem" title="Material Guide" id="496-JK-zCf">
+                        <barButtonItem key="backBarButtonItem" title="Guide" id="VmA-Mz-ZUB"/>
+                        <barButtonItem key="leftBarButtonItem" title="Saved" image="bookmark" catalog="system" id="Rj3-MX-86O">
                             <color key="tintColor" red="0.18039215689999999" green="0.41568627450000001" blue="0.65490196079999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
                                 <action selector="favoritesButtonArrayUpdate:" destination="BYZ-38-t0r" id="DU1-7l-PXC"/>
@@ -168,7 +165,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="aboutPopOver" destination="X4Y-U4-ddl" id="DW4-gB-pfA"/>
-                        <outlet property="activityIndicator" destination="KoF-xF-s6I" id="Buj-4u-NIR"/>
                         <outlet property="tableView" destination="FIW-76-VlF" id="OEK-Er-3wf"/>
                         <outlet property="visualEffectView" destination="7w2-im-C6d" id="7lZ-ie-hPD"/>
                     </connections>
@@ -238,7 +234,7 @@
                     <viewLayoutGuide key="safeArea" id="iN6-nr-eJt"/>
                 </view>
             </objects>
-            <point key="canvasLocation" x="1076.8115942028987" y="790.84821428571422"/>
+            <point key="canvasLocation" x="1076" y="790.64039408866995"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ROc-td-3Rm">
@@ -266,7 +262,7 @@
     </scenes>
     <color key="tintColor" red="0.18039215689999999" green="0.41568627450000001" blue="0.65490196079999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
     <resources>
-        <image name="hapman_title" width="700" height="187"/>
+        <image name="bookmark" catalog="system" width="112" height="128"/>
         <image name="info.circle" catalog="system" width="128" height="121"/>
     </resources>
 </document>

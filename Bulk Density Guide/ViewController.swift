@@ -1740,14 +1740,11 @@ class ViewController: UIViewController {
         effect = visualEffectView.effect
         visualEffectView.effect = nil
         visualEffectView.isUserInteractionEnabled = false
-        
-        activityIndicator.startAnimating()
-        activityIndicator.isHidden = true
-        activityIndicator.hidesWhenStopped = true
-        
+                
         tableView.delegate = self
         tableView.dataSource = self
         
+        showSearchBar()
         hideKeyboardWhenTappedAround() //hides keyboard as user taps anywhere else on screen
         retrieveArray() //retrieves saved array data from userDefaults
         
@@ -1775,14 +1772,6 @@ class ViewController: UIViewController {
             
         }) { (success:Bool) in
             self.aboutPopOver.removeFromSuperview()
-        }
-    }
-    
-    func showActivityIndicator(show: Bool) {
-        if show {
-            activityIndicator.startAnimating()
-        } else {
-            activityIndicator.stopAnimating()
         }
     }
     
@@ -1863,7 +1852,7 @@ extension ViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchBar.setShowsCancelButton(true, animated: true)
-        searchMaterial = materialData.filter {return $0.contains(searchText)}
+        searchMaterial = materialData.filter {return $0.localizedCaseInsensitiveContains(searchText)}
         searching = true
         tableView.reloadData()
     }
@@ -1875,36 +1864,33 @@ extension ViewController: UISearchBarDelegate {
         tableView.reloadData()
     }
     
-//    func showSearchBar() { //enables auto hiding of searchBar - not working
-//        let searchController = UISearchController(searchResultsController: nil)
-//        searchController.searchBar.delegate = self
-//        //searchController.dimsBackgroundDuringPresentation = false
-//        searchController.hidesNavigationBarDuringPresentation = true
-//        navigationItem.hidesSearchBarWhenScrolling = true
-//        //true for hiding, false for keep showing while scrolling
-//        searchController.searchBar.sizeToFit()
-//        searchController.searchBar.returnKeyType = UIReturnKeyType.search
-//        searchController.searchBar.placeholder = "Search here"
-//        navigationItem.searchController = searchController
-//
-//
-//    }
+    func showSearchBar() { //enables auto hiding of searchBar - not working
+        let searchController = UISearchController(searchResultsController: nil)
+        navigationItem.hidesSearchBarWhenScrolling = false
+        navigationItem.searchController = searchController
+        searchController.searchBar.delegate = self
+        //searchController.dimsBackgroundDuringPresentation = false
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.sizeToFit()
+        searchController.searchBar.returnKeyType = UIReturnKeyType.search
+        searchController.searchBar.placeholder = "Search material"
+    }
 }
 
 extension UIViewController { //provides method for hiding the keyboard
-    
+
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard(_:)))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
     }
-    
+
     @objc func dismissKeyboard(_ sender: UITapGestureRecognizer) {
         view.endEditing(true)
-        
+
         if let nav = self.navigationController {
             nav.view.endEditing(true)
         }
     }
-    
 }
+
