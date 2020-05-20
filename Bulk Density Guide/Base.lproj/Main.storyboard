@@ -161,7 +161,7 @@
                                 <segue destination="hIs-GZ-lNd" kind="show" id="kfO-ED-L90"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Info" image="info.circle" catalog="system" id="9oX-al-iwd">
+                        <barButtonItem key="rightBarButtonItem" title="    Info" image="info.circle" catalog="system" id="9oX-al-iwd">
                             <inset key="imageInsets" minX="0.0" minY="0.0" maxX="-10" maxY="0.0"/>
                             <color key="tintColor" red="0.18039215689999999" green="0.41568627450000001" blue="0.65490196079999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>

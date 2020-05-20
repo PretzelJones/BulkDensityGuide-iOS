@@ -1752,7 +1752,6 @@ class ViewController: UIViewController {
         
     }
 
-    
     func addNavBarImage() {
 
         let navController = navigationController!
@@ -1767,7 +1766,7 @@ class ViewController: UIViewController {
         let bannerY = bannerHeight / 2 - image!.size.height / 2
 
         imageView.frame = CGRect(x: bannerX, y: bannerY, width: bannerWidth, height: bannerHeight)
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .top
 
         navigationItem.titleView = imageView
 
