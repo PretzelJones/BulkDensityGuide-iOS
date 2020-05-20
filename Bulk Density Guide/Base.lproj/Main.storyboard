@@ -180,16 +180,6 @@
                     <rect key="frame" x="0.0" y="0.0" width="370" height="530"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Brought to you by Bosson Design www.bosson.design" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="1p3-GP-mo9">
-                            <rect key="frame" x="10" y="393" width="344" height="66"/>
-                            <color key="backgroundColor" red="0.18039215689999999" green="0.41568627450000001" blue="0.65490196079999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="66" id="4S8-kb-wfM"/>
-                            </constraints>
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                        </textView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jFr-Bj-OOM">
                             <rect key="frame" x="157" y="476" width="56" height="34"/>
                             <color key="backgroundColor" red="0.18039215689999999" green="0.41568627450000001" blue="0.65490196079999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -201,7 +191,7 @@
                                 <action selector="donePopButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bjI-p0-B0P"/>
                             </connections>
                         </button>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="The Bulk Density Guide" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="aCq-fO-fJk">
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="The Bulk Material Density Guide" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="aCq-fO-fJk">
                             <rect key="frame" x="16" y="12" width="338" height="38"/>
                             <color key="backgroundColor" red="0.18039215689999999" green="0.41568627450000001" blue="0.65490196079999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <constraints>
@@ -211,12 +201,22 @@
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="S2U-PP-eI6">
-                            <rect key="frame" x="16" y="58" width="338" height="327"/>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="S2U-PP-eI6">
+                            <rect key="frame" x="16" y="44" width="338" height="356"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <string key="text">You need to know bulk density to work with any powder or bulk solid. This guide, listing thousands of materials, is meant as a reference tool to assist you in designing your production system. Because the bulk density of a substance varies greatly depending on how the material has been handled, the information contained in this reference tool should be used for estimation purposes only. You can scroll through the entire list or start typing the name of a compound in the search field, all materials containing those characters will be displayed.</string>
+                            <mutableString key="text">You need to know bulk density to work with any powder or bulk solid. This guide, listing thousands of materials, is meant as a reference tool to assist you in designing your production system. Because the bulk density of a substance varies greatly depending on how the material has been handled, the information contained in this reference tool should be used for estimation purposes only. You can scroll through the entire list or start typing the name of a compound in the search field. Swipe left to pin to favorites and right to copy the text or share via apps installed on your device.</mutableString>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" text="Brought to you by Bosson Design www.bosson.design" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="1p3-GP-mo9">
+                            <rect key="frame" x="10" y="402" width="344" height="66"/>
+                            <color key="backgroundColor" red="0.18039215689999999" green="0.41568627450000001" blue="0.65490196079999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="66" id="4S8-kb-wfM"/>
+                            </constraints>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
                     </subviews>
