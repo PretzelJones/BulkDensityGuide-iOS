@@ -18,7 +18,7 @@ class FavoritesViewController: UIViewController {
         activityVC.popoverPresentationController?.barButtonItem = sender
         self.present(activityVC, animated: true, completion: nil)
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -67,6 +67,7 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
         let copyAction = UIContextualAction(style: .normal, title: "Copy") { (_, _, completionHandler) in
             
             let cell = tableView.cellForRow(at: indexPath)
@@ -85,3 +86,4 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
 }
+

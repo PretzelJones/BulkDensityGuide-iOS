@@ -1831,13 +1831,30 @@ extension ViewController: UITableViewDelegate {
             
             completionHandler(true)
         }
+        
+        let shareAction = UIContextualAction(style: .normal, title: "Share") { (_, _, completionHandler) in
+            var data: String
+            //UIPasteboard.general.string = cell?.textLabel?.text
+            if self.searching {
+                data = self.searchMaterial[indexPath.row]
+            } else {
+                data = self.materialData[indexPath.row]
+            }
+            //sharedData.append(data)
+            let shareItems: [Any] = [data]
+            let activityVC = UIActivityViewController(activityItems: shareItems, applicationActivities: nil)
+            self.present(activityVC, animated: true, completion: nil)
+        }
+            
         if #available(iOS 13.0, *) {
             copyAction.image = UIImage(systemName: "doc.on.clipboard")
+            shareAction.image = UIImage(systemName: "square.and.arrow.up")
         } else {
             // fall back to default action
         }
+        shareAction.backgroundColor = .systemYellow
         copyAction.backgroundColor = .systemBlue
-        let configuration = UISwipeActionsConfiguration(actions: [copyAction])
+        let configuration = UISwipeActionsConfiguration(actions: [copyAction, shareAction])
         return configuration
     }
     
