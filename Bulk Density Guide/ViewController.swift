@@ -1729,7 +1729,6 @@ class ViewController: UIViewController {
         "Zircon Flour \n 26.5 lb/ft³ 0.42 g/cm³",
         "Zircumium Basic Carbonate \n 7.2 lb/ft³ 0.12 g/cm³",
         
-        
     ]
     
     var searchMaterial = [String]()
@@ -1750,7 +1749,46 @@ class ViewController: UIViewController {
         hideKeyboardWhenTappedAround() //hides keyboard as user taps anywhere else on screen
         retrieveArray() //retrieves saved array data from userDefaults
         
+//        addNavBarImage()
+        
     }
+    
+//    func addNavBarImage() {
+//
+//        let navController = navigationController!
+//
+//        let image = UIImage(named: "hapman_title_logo")
+//        let imageView = UIImageView(image: image)
+//
+//        let bannerWidth = navController.navigationBar.frame.size.width
+//        let bannerHeight = navController.navigationBar.frame.size.height
+//
+//        let bannerX = bannerWidth / 2 - image!.size.width / 2
+//        let bannerY = bannerHeight / 2 - image!.size.height / 2
+//
+//        imageView.frame = CGRect(x: bannerX, y: bannerY, width: bannerWidth, height: bannerHeight)
+//        imageView.contentMode = .scaleAspectFit
+//
+//        navigationItem.titleView = imageView
+//
+//    }
+    
+//    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+//
+//        if(velocity.y>0) {
+//            //Code will work without the animation block.I am using animation block incase if you want to set any delay to it.
+//            UIView.animate(withDuration: 0.2, delay: 0, options: UIView.AnimationOptions(), animations: {
+//                self.navigationController?.setNavigationBarHidden(true, animated: true)
+//                self.navigationController?.setToolbarHidden(true, animated: true)
+//            }, completion: nil)
+//
+//        } else {
+//            UIView.animate(withDuration: 0.2, delay: 0, options: UIView.AnimationOptions(), animations: {
+//                self.navigationController?.setNavigationBarHidden(false, animated: true)
+//                self.navigationController?.setToolbarHidden(false, animated: true)
+//            }, completion: nil)
+//        }
+//    }
     
     func animateIn() {
         aboutPopOver.center = self.view.center
@@ -1823,7 +1861,7 @@ extension ViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath)
         -> UISwipeActionsConfiguration? {
-            let favoriteAction = UIContextualAction(style: .normal, title: "Bookmark") { (_, _, completionHandler) in
+            let favoriteAction = UIContextualAction(style: .normal, title: "Save") { (_, _, completionHandler) in
                 var data: String
                 if self.searching {
                     data = self.searchMaterial[indexPath.row]
@@ -1913,4 +1951,3 @@ extension UIViewController { //provides method for hiding the keyboard
         }
     }
 }
-

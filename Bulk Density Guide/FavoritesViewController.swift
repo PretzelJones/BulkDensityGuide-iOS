@@ -12,6 +12,13 @@ class FavoritesViewController: UIViewController {
     
     @IBOutlet var tableView: UITableView!
     
+    @IBAction func shareNavButton(_ sender: UIBarButtonItem) {
+        let shareItems: [Any] = sharedData
+        let activityVC = UIActivityViewController(activityItems: shareItems, applicationActivities: nil)
+        activityVC.popoverPresentationController?.barButtonItem = sender
+        self.present(activityVC, animated: true, completion: nil)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
