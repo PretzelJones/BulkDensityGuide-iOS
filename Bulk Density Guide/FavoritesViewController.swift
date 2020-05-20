@@ -57,7 +57,7 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
                 completionHandler(true)
             }
             if #available(iOS 13.0, *) {
-                deleteAction.image = UIImage(systemName: "trash")
+                deleteAction.image = UIImage(systemName: "trash.fill")
             } else {
                 // Fallback to default action
             }
@@ -77,16 +77,20 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
         }
         let shareAction = UIContextualAction(style: .normal, title: "Share") { (_, _, completionHandler) in
             var data: String
-            //UIPasteboard.general.string = cell?.textLabel?.text
             data = sharedData[indexPath.row]
-            
             let shareItems: [Any] = [data]
             let activityVC = UIActivityViewController(activityItems: shareItems, applicationActivities: nil)
+            
+            if let popoverController = activityVC.popoverPresentationController {
+                popoverController.sourceRect = CGRect(x: UIScreen.main.bounds.width / 1, y: UIScreen.main.bounds.height / 1, width: 0, height: 0)
+                popoverController.sourceView = self.view
+                popoverController.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
+            }
             self.present(activityVC, animated: true, completion: nil)
         }
         if #available(iOS 13.0, *) {
-            copyAction.image = UIImage(systemName: "doc.on.clipboard")
-            shareAction.image = UIImage(systemName: "square.and.arrow.up")
+            copyAction.image = UIImage(systemName: "doc.on.clipboard.fill")
+            shareAction.image = UIImage(systemName: "square.and.arrow.up.fill")
         } else {
             // fall back to default action
         }
@@ -95,6 +99,4 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
         let configuration = UISwipeActionsConfiguration(actions: [copyAction, shareAction])
         return configuration
     }
-    
 }
-

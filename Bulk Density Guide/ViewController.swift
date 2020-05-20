@@ -33,14 +33,10 @@ class ViewController: UIViewController {
     
     var effect:UIVisualEffect!
     
-    @IBOutlet weak var searchBar: UISearchBar!
-    
-    @IBOutlet var tableView: UITableView!
-    
-    //    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    
     @IBOutlet weak var visualEffectView: UIVisualEffectView!
-    
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet var tableView: UITableView!
+   
     let materialData = [
         "Acetaminohen Powder, Unmilled \n 43 lb/ft³ 0.688794 g/cm³",
         "Acetylene Black, 100% Compressed \n 35 lb/ft³ 0.560646 g/cm³",
@@ -1745,10 +1741,10 @@ class ViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        showSearchBar()
+        showSearchBar() //custom searchbar
         hideKeyboardWhenTappedAround() //hides keyboard as user taps anywhere else on screen
         retrieveArray() //retrieves saved array data from userDefaults
-        addNavBarImage()
+        addNavBarImage() //Hapman logo at center of navbar
         
     }
 
@@ -1833,21 +1829,24 @@ extension ViewController: UITableViewDelegate {
         
         let shareAction = UIContextualAction(style: .normal, title: "Share") { (_, _, completionHandler) in
             var data: String
-            //UIPasteboard.general.string = cell?.textLabel?.text
             if self.searching {
                 data = self.searchMaterial[indexPath.row]
             } else {
                 data = self.materialData[indexPath.row]
             }
-            //sharedData.append(data)
             let shareItems: [Any] = [data]
             let activityVC = UIActivityViewController(activityItems: shareItems, applicationActivities: nil)
+            if let popoverController = activityVC.popoverPresentationController {
+                popoverController.sourceRect = CGRect(x: UIScreen.main.bounds.width / 1, y: UIScreen.main.bounds.height / 1, width: 0, height: 0)
+                popoverController.sourceView = self.view
+                popoverController.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
+            }
             self.present(activityVC, animated: true, completion: nil)
         }
             
         if #available(iOS 13.0, *) {
-            copyAction.image = UIImage(systemName: "doc.on.clipboard")
-            shareAction.image = UIImage(systemName: "square.and.arrow.up")
+            copyAction.image = UIImage(systemName: "doc.on.clipboard.fill")
+            shareAction.image = UIImage(systemName: "square.and.arrow.up.fill")
         } else {
             // fall back to default action
         }
@@ -1872,7 +1871,7 @@ extension ViewController: UITableViewDelegate {
                 completionHandler(true)
             }
             if #available(iOS 13.0, *) {
-                favoriteAction.image = UIImage(systemName: "bookmark")
+                favoriteAction.image = UIImage(systemName: "pin.fill")
             } else {
                 // fall back to default action
             }
@@ -1934,7 +1933,7 @@ extension ViewController: UISearchBarDelegate {
     }
 }
 
-extension UIViewController { //provides method for hiding the keyboard
+extension UIViewController {
     
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard(_:)))

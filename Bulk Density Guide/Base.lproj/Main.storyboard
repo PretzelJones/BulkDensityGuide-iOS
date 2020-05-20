@@ -154,7 +154,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Bulk Material Density Guide" id="496-JK-zCf">
                         <barButtonItem key="backBarButtonItem" title=" " id="VmA-Mz-ZUB"/>
-                        <barButtonItem key="leftBarButtonItem" title="Saved" image="bookmark" catalog="system" id="Rj3-MX-86O">
+                        <barButtonItem key="leftBarButtonItem" title="Saved" image="pin" catalog="system" id="Rj3-MX-86O">
                             <color key="tintColor" red="0.18039215689999999" green="0.41568627450000001" blue="0.65490196079999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
                                 <action selector="favoritesButtonArrayUpdate:" destination="BYZ-38-t0r" id="DU1-7l-PXC"/>
@@ -271,8 +271,8 @@
     </scenes>
     <color key="tintColor" red="0.18039215689999999" green="0.41568627450000001" blue="0.65490196079999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
     <resources>
-        <image name="bookmark" catalog="system" width="112" height="128"/>
         <image name="info.circle" catalog="system" width="128" height="121"/>
+        <image name="pin" catalog="system" width="119" height="128"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
     </resources>
 </document>
