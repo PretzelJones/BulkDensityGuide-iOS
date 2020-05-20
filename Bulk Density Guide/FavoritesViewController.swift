@@ -56,7 +56,7 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
                 tableView.endUpdates()
                 completionHandler(true)
             }
-            if #available(iOS 13.0, *) {
+            if #available(iOS 13.0, *) { // used to account for system SF icons not available in > iOS 13
                 deleteAction.image = UIImage(systemName: "trash.fill")
             } else {
                 // Fallback to default action
@@ -81,14 +81,14 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
             let shareItems: [Any] = [data]
             let activityVC = UIActivityViewController(activityItems: shareItems, applicationActivities: nil)
             
-            if let popoverController = activityVC.popoverPresentationController {
+            if let popoverController = activityVC.popoverPresentationController { //added to account for different handling in iPad OS
                 popoverController.sourceRect = CGRect(x: UIScreen.main.bounds.width / 1, y: UIScreen.main.bounds.height / 1, width: 0, height: 0)
                 popoverController.sourceView = self.view
                 popoverController.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
             }
             self.present(activityVC, animated: true, completion: nil)
         }
-        if #available(iOS 13.0, *) {
+        if #available(iOS 13.0, *) { // used to account for system SF icons not available in > iOS 13
             copyAction.image = UIImage(systemName: "doc.on.clipboard.fill")
             shareAction.image = UIImage(systemName: "square.and.arrow.up.fill")
         } else {
