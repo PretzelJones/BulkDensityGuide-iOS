@@ -132,7 +132,6 @@
                             <constraint firstItem="FIW-76-VlF" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Iii-Cr-xEA"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="FIW-76-VlF" secondAttribute="bottom" id="LIV-gc-8LD"/>
                             <constraint firstItem="gCj-fX-6cd" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="TEB-6L-6uH"/>
-                            <constraint firstItem="FIW-76-VlF" firstAttribute="top" secondItem="gCj-fX-6cd" secondAttribute="bottom" id="TRq-5O-eWc"/>
                             <constraint firstItem="7w2-im-C6d" firstAttribute="bottom" secondItem="FIW-76-VlF" secondAttribute="bottom" id="ZxU-1Q-YCF"/>
                             <constraint firstItem="7w2-im-C6d" firstAttribute="trailing" secondItem="FIW-76-VlF" secondAttribute="trailing" id="elu-bd-AFE"/>
                             <constraint firstItem="7w2-im-C6d" firstAttribute="leading" secondItem="FIW-76-VlF" secondAttribute="leading" id="gXx-55-ms3"/>
@@ -201,7 +200,7 @@
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="S2U-PP-eI6">
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="S2U-PP-eI6">
                             <rect key="frame" x="16" y="44" width="338" height="356"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <mutableString key="text">You need to know bulk density to work with any powder or bulk solid. This guide, listing thousands of materials, is meant as a reference tool to assist you in designing your production system. Because the bulk density of a substance varies greatly depending on how the material has been handled, the information contained in this reference tool should be used for estimation purposes only. You can scroll through the entire list or start typing the name of a compound in the search field. Swipe left to pin to favorites and right to copy the text or share via apps installed on your device.</mutableString>
@@ -209,7 +208,7 @@
                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" text="Brought to you by Bosson Design www.bosson.design" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="1p3-GP-mo9">
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Brought to you by Bosson Design www.bosson.design" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="1p3-GP-mo9">
                             <rect key="frame" x="10" y="402" width="344" height="66"/>
                             <color key="backgroundColor" red="0.18039215689999999" green="0.41568627450000001" blue="0.65490196079999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <constraints>
@@ -226,9 +225,9 @@
                         <constraint firstItem="aCq-fO-fJk" firstAttribute="leading" secondItem="S2U-PP-eI6" secondAttribute="leading" id="2tZ-Fd-ucb"/>
                         <constraint firstItem="aCq-fO-fJk" firstAttribute="top" secondItem="X4Y-U4-ddl" secondAttribute="top" constant="12" id="5Ga-I1-Myu"/>
                         <constraint firstItem="S2U-PP-eI6" firstAttribute="trailing" secondItem="1p3-GP-mo9" secondAttribute="trailing" id="6P8-kZ-08M"/>
-                        <constraint firstItem="S2U-PP-eI6" firstAttribute="top" secondItem="aCq-fO-fJk" secondAttribute="bottom" constant="8" id="7EU-eX-HkD"/>
-                        <constraint firstItem="jFr-Bj-OOM" firstAttribute="top" secondItem="1p3-GP-mo9" secondAttribute="bottom" constant="17" id="Buf-Za-sia"/>
-                        <constraint firstItem="1p3-GP-mo9" firstAttribute="top" secondItem="S2U-PP-eI6" secondAttribute="bottom" constant="8" id="EYq-iJ-tvq"/>
+                        <constraint firstItem="S2U-PP-eI6" firstAttribute="top" secondItem="aCq-fO-fJk" secondAttribute="bottom" constant="-6" id="7EU-eX-HkD"/>
+                        <constraint firstItem="jFr-Bj-OOM" firstAttribute="top" secondItem="1p3-GP-mo9" secondAttribute="bottom" constant="8" id="Buf-Za-sia"/>
+                        <constraint firstItem="1p3-GP-mo9" firstAttribute="top" secondItem="S2U-PP-eI6" secondAttribute="bottom" constant="2" id="EYq-iJ-tvq"/>
                         <constraint firstItem="aCq-fO-fJk" firstAttribute="trailing" secondItem="S2U-PP-eI6" secondAttribute="trailing" id="GvJ-1R-abm"/>
                         <constraint firstItem="aCq-fO-fJk" firstAttribute="trailing" secondItem="X4Y-U4-ddl" secondAttribute="trailingMargin" id="NEE-WK-dZ9"/>
                         <constraint firstItem="S2U-PP-eI6" firstAttribute="centerX" secondItem="jFr-Bj-OOM" secondAttribute="centerX" id="Sj8-oj-Dyz"/>
