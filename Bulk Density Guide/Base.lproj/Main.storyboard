@@ -89,24 +89,27 @@
                                     <constraint firstAttribute="height" constant="192" id="JVa-IN-9Np"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="16" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FHw-80-7pk">
-                                <rect key="frame" x="16" y="259" width="382" height="554"/>
-                                <color key="tintColor" red="0.16862745100000001" green="0.3921568627" blue="0.63137254899999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <string key="text">You need to know bulk density to work with any powder or bulk solid. This guide, listing thousands of materials, is meant as a reference tool to assist you in designing your production system. Because the bulk density of a substance varies greatly depending on how the material has been handled, the information contained in this reference tool should be used for estimation purposes only. You can scroll through the entire list or start typing the name of a compound in the search field. Swipe left to pin to favorites and right to copy the text or share via apps installed on your device.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WJ3-q1-ryG">
+                                <rect key="frame" x="20" y="288" width="374" height="574"/>
+                                <color key="backgroundColor" red="0.16862745100000001" green="0.3921568627" blue="0.63137254899999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
+                                </accessibility>
+                                <mutableString key="text">You need to know bulk density to work with any powder or bulk solid. This guide, listing thousands of materials, is meant as a reference tool to assist you in designing your production system. Because the bulk density of a substance varies greatly depending on how the material has been handled, the information contained in this reference tool should be used for estimation purposes only. You can scroll through the entire list or start typing the name of a compound in the search field. Swipe left to pin to favorites and right to copy the text or share via apps installed on your device.</mutableString>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" red="0.16862745100000001" green="0.3921568627" blue="0.63137254899999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
+                            <constraint firstItem="WJ3-q1-ryG" firstAttribute="bottom" secondItem="piH-8A-czG" secondAttribute="bottom" id="4Dv-1U-zBm"/>
+                            <constraint firstItem="WJ3-q1-ryG" firstAttribute="top" secondItem="FgR-fD-8mh" secondAttribute="bottom" constant="8" id="JqH-1c-RrY"/>
                             <constraint firstItem="FgR-fD-8mh" firstAttribute="top" secondItem="piH-8A-czG" secondAttribute="top" id="Rsq-pS-Ucs"/>
-                            <constraint firstItem="FHw-80-7pk" firstAttribute="leading" secondItem="piH-8A-czG" secondAttribute="leading" constant="16" id="Trg-Ch-Che"/>
-                            <constraint firstItem="piH-8A-czG" firstAttribute="trailing" secondItem="FHw-80-7pk" secondAttribute="trailing" constant="16" id="UIR-96-idN"/>
-                            <constraint firstItem="FHw-80-7pk" firstAttribute="top" secondItem="FgR-fD-8mh" secondAttribute="bottom" constant="-21" id="bFb-Mw-m0q"/>
                             <constraint firstItem="FgR-fD-8mh" firstAttribute="trailing" secondItem="piH-8A-czG" secondAttribute="trailing" id="hwh-Gu-KAh"/>
-                            <constraint firstItem="piH-8A-czG" firstAttribute="bottom" secondItem="FHw-80-7pk" secondAttribute="bottom" constant="49" id="vJL-yu-Ljg"/>
+                            <constraint firstItem="WJ3-q1-ryG" firstAttribute="centerX" secondItem="FgR-fD-8mh" secondAttribute="centerX" id="qsF-Yl-NRd"/>
                             <constraint firstItem="FgR-fD-8mh" firstAttribute="leading" secondItem="piH-8A-czG" secondAttribute="leading" id="w7j-Fg-Qim"/>
+                            <constraint firstItem="WJ3-q1-ryG" firstAttribute="leading" secondItem="saf-5y-mCq" secondAttribute="leadingMargin" id="yHF-yg-Xim"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="piH-8A-czG"/>
                     </view>
@@ -116,7 +119,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uEY-QA-Xgg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2099" y="124"/>
+            <point key="canvasLocation" x="2098.5507246376815" y="123.88392857142857"/>
         </scene>
         <!--Favorites-->
         <scene sceneID="Kkk-8U-8W5">

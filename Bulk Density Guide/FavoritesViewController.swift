@@ -76,7 +76,7 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
             deleteAction.backgroundColor = .systemRed
             return UISwipeActionsConfiguration(actions: [deleteAction])
     }
-
+    
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         let copyAction = UIContextualAction(style: .normal, title: "Copy") { (_, _, completionHandler) in
