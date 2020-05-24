@@ -48,17 +48,6 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath)
         -> UISwipeActionsConfiguration? {
-            //            let deleteAction = UIContextualAction(style: .destructive, title: "Remove") { (_, _, completionHandler) in
-            //
-            //                sharedData.remove(at: indexPath.row)
-            //                saveArray()
-            //                tableView.beginUpdates()
-            //                tableView.deleteRows(at: [indexPath], with: .automatic)
-            //                tableView.endUpdates()
-            //                completionHandler(true)
-            //            }
-            
-            
             let deleteAction = UIContextualAction(style: .destructive, title: "Remove") { (action, view, completion) in
                 let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
                 alert.addAction(UIAlertAction(title: "Delete", style: .default) { (action) in
@@ -74,9 +63,6 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
                     completion(false)
                 })
                 
-                            
-                
-                // This sets up the alert to show next to the button
                 alert.popoverPresentationController?.sourceView = view
                 alert.popoverPresentationController?.sourceRect = view.bounds
                 
@@ -90,17 +76,7 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
             deleteAction.backgroundColor = .systemRed
             return UISwipeActionsConfiguration(actions: [deleteAction])
     }
-    
-    //            if #available(iOS 13.0, *) { // used to account for system SF icons not available in > iOS 13
-    //                deleteAction.image = UIImage(systemName: "trash.fill")
-    //            } else {
-    //                // Fallback to default action
-    //            }
-    //            deleteAction.backgroundColor = .systemRed
-    //            let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
-    //            return configuration
-    
-    
+
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         let copyAction = UIContextualAction(style: .normal, title: "Copy") { (_, _, completionHandler) in
