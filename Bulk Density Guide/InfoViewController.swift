@@ -8,8 +8,14 @@
 
 import UIKit
 import MessageUI
+import SafariServices
 
 class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate {
+    
+    private var homeUrlString:String = "https://hapman.com"
+    private var contactUrlString:String = "https://www.hapman.com/contact-us"
+    private var repUrlString:String = "https://www.hapman.com/find-a-rep"
+    private var aboutUrlString:String = "https://www.hapman.com/the-hapman-difference"
     
     let aboutData: [String] = [
         "About the Guide",
@@ -62,13 +68,25 @@ extension InfoViewController: UITableViewDataSource, UITableViewDelegate {
         if indexPath.row == 0 {
             performSegue(withIdentifier: "aboutSegue", sender: self)
         } else if indexPath.row == 1 {
-            open(scheme: "http://www.hapman.com")
+            let safVC = SFSafariViewController(url: NSURL(string: self.homeUrlString)! as URL)
+            self.present(safVC, animated: true, completion: nil)
+            
+            //            open(scheme: "http://www.hapman.com")
         } else if indexPath.row == 2 {
-            open(scheme: "http://www.hapman.com/contact-us")
+            let safVC = SFSafariViewController(url: NSURL(string: self.contactUrlString)! as URL)
+            self.present(safVC, animated: true, completion: nil)
+            
+            //            open(scheme: "http://www.hapman.com/contact-us")
         } else if indexPath.row == 3 {
-            open(scheme: "http://www.hapman.com/find-a-rep")
+            let safVC = SFSafariViewController(url: NSURL(string: self.repUrlString)! as URL)
+            self.present(safVC, animated: true, completion: nil)
+            
+            //            open(scheme: "http://www.hapman.com/find-a-rep")
         } else if indexPath.row == 4 {
-            open(scheme: "http://www.hapman.com/the-hapman-difference")
+            let safVC = SFSafariViewController(url: NSURL(string: self.aboutUrlString)! as URL)
+            self.present(safVC, animated: true, completion: nil)
+            
+            //            open(scheme: "http://www.hapman.com/the-hapman-difference")
         } else if indexPath.row == 5 {
             
             let shareItem : NSURL = NSURL(string: "https://apps.apple.com/us/app/spooky-halloween-sounds/id1437079754")!
