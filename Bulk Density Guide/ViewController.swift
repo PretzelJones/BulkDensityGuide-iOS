@@ -31,9 +31,9 @@ func retrieveArray() {
 
 class ViewController: UIViewController {
     
-    var effect:UIVisualEffect!
-    
-    @IBOutlet weak var visualEffectView: UIVisualEffectView!
+//    var effect:UIVisualEffect!
+//
+//    @IBOutlet weak var visualEffectView: UIVisualEffectView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet var tableView: UITableView!
    
@@ -1732,11 +1732,11 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.aboutPopOver.layer.cornerRadius = 10
-        
-        effect = visualEffectView.effect
-        visualEffectView.effect = nil
-        visualEffectView.isUserInteractionEnabled = false
+//        self.aboutPopOver.layer.cornerRadius = 10
+//
+//        effect = visualEffectView.effect
+//        visualEffectView.effect = nil
+//        visualEffectView.isUserInteractionEnabled = false
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -1767,48 +1767,50 @@ class ViewController: UIViewController {
         navigationItem.titleView = imageView
 
     }
-  
-    func animateIn() {
-        aboutPopOver.center = self.view.center
-        
-        aboutPopOver.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
-        aboutPopOver.alpha = 0
-        
-        UIView.animate(withDuration: 0.4) {
-            self.visualEffectView.effect = self.effect
-            self.aboutPopOver.alpha = 1
-            self.aboutPopOver.transform = CGAffineTransform.identity
-        }
-    }
-    
-    func animateOut () {
-        UIView.animate(withDuration: 0.3, animations: {
-            self.aboutPopOver.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
-            self.aboutPopOver.alpha = 0
-            
-            self.visualEffectView.effect = nil
-            
-        }) { (success:Bool) in
-            self.aboutPopOver.removeFromSuperview()
-        }
-    }
-    
-    @IBOutlet var aboutPopOver: UIView!
-    
-    @IBAction func aboutPopButton(_ sender: Any) {
-        
-        self.view.addSubview(aboutPopOver)
-        aboutPopOver.center = self.view.center
-        animateIn()
-    }
-    
-    @IBAction func donePopButton(_ sender: Any) {
-        
-        self.aboutPopOver.removeFromSuperview()
-        animateOut()
-    }
-    
 }
+
+  
+//    func animateIn() {
+//        aboutPopOver.center = self.view.center
+//
+//        aboutPopOver.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
+//        aboutPopOver.alpha = 0
+//
+//        UIView.animate(withDuration: 0.4) {
+//            self.visualEffectView.effect = self.effect
+//            self.aboutPopOver.alpha = 1
+//            self.aboutPopOver.transform = CGAffineTransform.identity
+//        }
+//    }
+//
+//    func animateOut () {
+//        UIView.animate(withDuration: 0.3, animations: {
+//            self.aboutPopOver.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
+//            self.aboutPopOver.alpha = 0
+//
+//            self.visualEffectView.effect = nil
+//
+//        }) { (success:Bool) in
+//            self.aboutPopOver.removeFromSuperview()
+//        }
+//    }
+    
+//    @IBOutlet var aboutPopOver: UIView!
+//
+//    @IBAction func aboutPopButton(_ sender: Any) {
+//
+//        self.view.addSubview(aboutPopOver)
+//        aboutPopOver.center = self.view.center
+//        animateIn()
+//    }
+//
+//    @IBAction func donePopButton(_ sender: Any) {
+//
+//        self.aboutPopOver.removeFromSuperview()
+//        animateOut()
+//    }
+//
+//}
 
 extension ViewController: UITableViewDelegate {
     

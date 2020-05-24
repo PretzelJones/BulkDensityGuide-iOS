@@ -19,7 +19,9 @@
 		AEADDD06EDE08EE52B9EE47C /* Pods_Bulk_Density_Guide.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A945F7D2C9FC3E3356C864D7 /* Pods_Bulk_Density_Guide.framework */; };
 		CD6E0232996A7C0A96F65472 /* Pods_Bulk_Density_GuideTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D09268140CD9BEF1EED374E /* Pods_Bulk_Density_GuideTests.framework */; };
 		F372AFE7C5DBEDDA6B8A0DB5 /* Pods_Bulk_Density_GuideUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD4A706F2CAB6CB9BD12579F /* Pods_Bulk_Density_GuideUITests.framework */; };
-		F4460BB324786531002C5A97 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4460BB224786531002C5A97 /* AboutViewController.swift */; };
+		F43141032479AC1E00537B0A /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43141022479AC1E00537B0A /* InfoViewController.swift */; };
+		F43141052479B44800537B0A /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43141042479B44800537B0A /* AboutViewController.swift */; };
+		F4460BB324786531002C5A97 /* OldAboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4460BB224786531002C5A97 /* OldAboutViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,7 +67,9 @@
 		BE8B59862A35C16694F5C08E /* Pods-Bulk Density Guide.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bulk Density Guide.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bulk Density Guide/Pods-Bulk Density Guide.debug.xcconfig"; sourceTree = "<group>"; };
 		DD4A706F2CAB6CB9BD12579F /* Pods_Bulk_Density_GuideUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bulk_Density_GuideUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBC0DBC4B2C514EC0F27436D /* Pods-Bulk Density GuideUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bulk Density GuideUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bulk Density GuideUITests/Pods-Bulk Density GuideUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		F4460BB224786531002C5A97 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		F43141022479AC1E00537B0A /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		F43141042479B44800537B0A /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		F4460BB224786531002C5A97 /* OldAboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldAboutViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,7 +127,9 @@
 			children = (
 				14C5C11122249EA400F22733 /* ViewController.swift */,
 				149CFAB72465FBEF007DB1E7 /* FavoritesViewController.swift */,
-				F4460BB224786531002C5A97 /* AboutViewController.swift */,
+				F4460BB224786531002C5A97 /* OldAboutViewController.swift */,
+				F43141022479AC1E00537B0A /* InfoViewController.swift */,
+				F43141042479B44800537B0A /* AboutViewController.swift */,
 				14C5C11322249EA400F22733 /* Main.storyboard */,
 				14C5C10F22249EA400F22733 /* AppDelegate.swift */,
 				14C5C11822249EA600F22733 /* LaunchScreen.storyboard */,
@@ -401,10 +407,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F43141052479B44800537B0A /* AboutViewController.swift in Sources */,
 				14C5C11222249EA400F22733 /* ViewController.swift in Sources */,
 				149CFAB82465FBEF007DB1E7 /* FavoritesViewController.swift in Sources */,
-				F4460BB324786531002C5A97 /* AboutViewController.swift in Sources */,
+				F4460BB324786531002C5A97 /* OldAboutViewController.swift in Sources */,
 				14C5C11022249EA400F22733 /* AppDelegate.swift in Sources */,
+				F43141032479AC1E00537B0A /* InfoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
