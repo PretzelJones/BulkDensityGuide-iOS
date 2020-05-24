@@ -21,7 +21,6 @@
 		F372AFE7C5DBEDDA6B8A0DB5 /* Pods_Bulk_Density_GuideUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD4A706F2CAB6CB9BD12579F /* Pods_Bulk_Density_GuideUITests.framework */; };
 		F43141032479AC1E00537B0A /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43141022479AC1E00537B0A /* InfoViewController.swift */; };
 		F43141052479B44800537B0A /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43141042479B44800537B0A /* AboutViewController.swift */; };
-		F4460BB324786531002C5A97 /* OldAboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4460BB224786531002C5A97 /* OldAboutViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,7 +68,6 @@
 		EBC0DBC4B2C514EC0F27436D /* Pods-Bulk Density GuideUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bulk Density GuideUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bulk Density GuideUITests/Pods-Bulk Density GuideUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F43141022479AC1E00537B0A /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		F43141042479B44800537B0A /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
-		F4460BB224786531002C5A97 /* OldAboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldAboutViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,7 +125,6 @@
 			children = (
 				14C5C11122249EA400F22733 /* ViewController.swift */,
 				149CFAB72465FBEF007DB1E7 /* FavoritesViewController.swift */,
-				F4460BB224786531002C5A97 /* OldAboutViewController.swift */,
 				F43141022479AC1E00537B0A /* InfoViewController.swift */,
 				F43141042479B44800537B0A /* AboutViewController.swift */,
 				14C5C11322249EA400F22733 /* Main.storyboard */,
@@ -410,7 +407,6 @@
 				F43141052479B44800537B0A /* AboutViewController.swift in Sources */,
 				14C5C11222249EA400F22733 /* ViewController.swift in Sources */,
 				149CFAB82465FBEF007DB1E7 /* FavoritesViewController.swift in Sources */,
-				F4460BB324786531002C5A97 /* OldAboutViewController.swift in Sources */,
 				14C5C11022249EA400F22733 /* AppDelegate.swift in Sources */,
 				F43141032479AC1E00537B0A /* InfoViewController.swift in Sources */,
 			);
