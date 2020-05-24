@@ -48,13 +48,39 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath)
         -> UISwipeActionsConfiguration? {
-            let deleteAction = UIContextualAction(style: .destructive, title: "Remove") { (_, _, completionHandler) in
-                sharedData.remove(at: indexPath.row)
-                saveArray()
-                tableView.beginUpdates()
-                tableView.deleteRows(at: [indexPath], with: .automatic)
-                tableView.endUpdates()
-                completionHandler(true)
+            //            let deleteAction = UIContextualAction(style: .destructive, title: "Remove") { (_, _, completionHandler) in
+            //
+            //                sharedData.remove(at: indexPath.row)
+            //                saveArray()
+            //                tableView.beginUpdates()
+            //                tableView.deleteRows(at: [indexPath], with: .automatic)
+            //                tableView.endUpdates()
+            //                completionHandler(true)
+            //            }
+            
+            
+            let deleteAction = UIContextualAction(style: .destructive, title: "Remove") { (action, view, completion) in
+                let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+                alert.addAction(UIAlertAction(title: "Delete", style: .default) { (action) in
+                    
+                    sharedData.remove(at: indexPath.row)
+                    saveArray()
+                    tableView.beginUpdates()
+                    tableView.deleteRows(at: [indexPath], with: .automatic)
+                    tableView.endUpdates()
+                    completion(true)
+                })
+                alert.addAction(UIAlertAction(title: "Cancel", style: .default) { (action) in
+                    completion(false)
+                })
+                
+                            
+                
+                // This sets up the alert to show next to the button
+                alert.popoverPresentationController?.sourceView = view
+                alert.popoverPresentationController?.sourceRect = view.bounds
+                
+                self.present(alert, animated: true, completion: nil)
             }
             if #available(iOS 13.0, *) { // used to account for system SF icons not available in > iOS 13
                 deleteAction.image = UIImage(systemName: "trash.fill")
@@ -62,9 +88,18 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
                 // Fallback to default action
             }
             deleteAction.backgroundColor = .systemRed
-            let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
-            return configuration
+            return UISwipeActionsConfiguration(actions: [deleteAction])
     }
+    
+    //            if #available(iOS 13.0, *) { // used to account for system SF icons not available in > iOS 13
+    //                deleteAction.image = UIImage(systemName: "trash.fill")
+    //            } else {
+    //                // Fallback to default action
+    //            }
+    //            deleteAction.backgroundColor = .systemRed
+    //            let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
+    //            return configuration
+    
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
@@ -75,6 +110,7 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
             
             completionHandler(true)
         }
+        
         let shareAction = UIContextualAction(style: .normal, title: "Share") { (_, _, completionHandler) in
             var data: String
             data = sharedData[indexPath.row]

@@ -31,12 +31,9 @@ func retrieveArray() {
 
 class ViewController: UIViewController {
     
-//    var effect:UIVisualEffect!
-//
-//    @IBOutlet weak var visualEffectView: UIVisualEffectView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet var tableView: UITableView!
-   
+    
     let materialData = [
         "Acetaminohen Powder, Unmilled \n 43 lb/ft³ 0.688794 g/cm³",
         "Acetylene Black, 100% Compressed \n 35 lb/ft³ 0.560646 g/cm³",
@@ -1732,11 +1729,6 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.aboutPopOver.layer.cornerRadius = 10
-//
-//        effect = visualEffectView.effect
-//        visualEffectView.effect = nil
-//        visualEffectView.isUserInteractionEnabled = false
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -1747,70 +1739,27 @@ class ViewController: UIViewController {
         addNavBarImage() //Hapman logo at center of navbar
         
     }
-
+    
     func addNavBarImage() {
-
+        
         let navController = navigationController!
-
+        
         let image = UIImage(named: "hapman_title_logo")
         let imageView = UIImageView(image: image)
-
+        
         let bannerWidth = navController.navigationBar.frame.size.width
         let bannerHeight = navController.navigationBar.frame.size.height
-
+        
         let bannerX = bannerWidth / 2 - image!.size.width / 2
         let bannerY = bannerHeight / 2 - image!.size.height / 2
-
+        
         imageView.frame = CGRect(x: bannerX, y: bannerY, width: bannerWidth, height: bannerHeight)
         imageView.contentMode = .top
-
+        
         navigationItem.titleView = imageView
-
+        
     }
 }
-
-  
-//    func animateIn() {
-//        aboutPopOver.center = self.view.center
-//
-//        aboutPopOver.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
-//        aboutPopOver.alpha = 0
-//
-//        UIView.animate(withDuration: 0.4) {
-//            self.visualEffectView.effect = self.effect
-//            self.aboutPopOver.alpha = 1
-//            self.aboutPopOver.transform = CGAffineTransform.identity
-//        }
-//    }
-//
-//    func animateOut () {
-//        UIView.animate(withDuration: 0.3, animations: {
-//            self.aboutPopOver.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
-//            self.aboutPopOver.alpha = 0
-//
-//            self.visualEffectView.effect = nil
-//
-//        }) { (success:Bool) in
-//            self.aboutPopOver.removeFromSuperview()
-//        }
-//    }
-    
-//    @IBOutlet var aboutPopOver: UIView!
-//
-//    @IBAction func aboutPopButton(_ sender: Any) {
-//
-//        self.view.addSubview(aboutPopOver)
-//        aboutPopOver.center = self.view.center
-//        animateIn()
-//    }
-//
-//    @IBAction func donePopButton(_ sender: Any) {
-//
-//        self.aboutPopOver.removeFromSuperview()
-//        animateOut()
-//    }
-//
-//}
 
 extension ViewController: UITableViewDelegate {
     
@@ -1846,7 +1795,7 @@ extension ViewController: UITableViewDelegate {
             }
             self.present(activityVC, animated: true, completion: nil)
         }
-            
+        
         if #available(iOS 13.0, *) { // used to account for system SF icons not available in > iOS 13
             copyAction.image = UIImage(systemName: "doc.on.clipboard.fill")
             shareAction.image = UIImage(systemName: "square.and.arrow.up.fill")
