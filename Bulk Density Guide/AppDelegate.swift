@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Firebase
+//import Firebase
 import StoreKit
 
 @UIApplicationMain
@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(AppDelegate.requestReview), userInfo: nil, repeats: false)
 
         //firebase functionality
-        FirebaseApp.configure()
+//        FirebaseApp.configure()
         return true
     }
     //initate review request

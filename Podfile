@@ -6,7 +6,7 @@ target 'Bulk Density Guide' do
   use_frameworks!
 
   # Pods for Bulk Density Guide
-  pod 'Firebase/Analytics'
+    # pod 'Firebase/Analytics'
   
   target 'Bulk Density GuideTests' do
     inherit! :search_paths

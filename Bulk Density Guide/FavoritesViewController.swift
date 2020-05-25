@@ -15,8 +15,11 @@ class FavoritesViewController: UIViewController {
     @IBAction func shareNavButton(_ sender: UIBarButtonItem) {
         let shareItems: [Any] = sharedData
         if shareItems.isEmpty {
-            let alert = UIAlertController(title: "Your Favorites list is empty", message: "You can populate your list by adding items from the previous screen", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            let alert = UIAlertController(title: "Nothing to share", message: "Add items to your favorites list first", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+                self.performSegue(withIdentifier: "returnSegue", sender: self) //returns user to the main VC via segue returnSegue via yellow square to target VC
+            }))
+//            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil)) // just dismisses the alert
             self.present(alert, animated: true)
         } else {
             let activityVC = UIActivityViewController(activityItems: shareItems, applicationActivities: nil)
@@ -55,7 +58,7 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
         -> UISwipeActionsConfiguration? {
             let deleteAction = UIContextualAction(style: .destructive, title: "Remove") { (action, view, completion) in
                 let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-                alert.addAction(UIAlertAction(title: "Delete", style: .default) { (action) in
+                alert.addAction(UIAlertAction(title: "Remove", style: .default) { (action) in
                     
                     sharedData.remove(at: indexPath.row)
                     saveArray()

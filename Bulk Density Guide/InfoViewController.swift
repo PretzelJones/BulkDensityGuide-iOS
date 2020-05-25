@@ -49,20 +49,20 @@ class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate 
 
 extension InfoViewController: UITableViewDataSource, UITableViewDelegate {
     
-    func open(scheme: String) {
-        if let url = URL(string: scheme) {
-            if #available(iOS 10, *) {
-                UIApplication.shared.open(url, options: [:],
-                                          completionHandler: {
-                                            (success) in
-                                            print("Open \(scheme): \(success)")
-                })
-            } else {
-                let success = UIApplication.shared.openURL(url)
-                print("Open \(scheme): \(success)")
-            }
-        }
-    }
+//    func open(scheme: String) { //provides method for opening links in Safari
+//        if let url = URL(string: scheme) {
+//            if #available(iOS 10, *) {
+//                UIApplication.shared.open(url, options: [:],
+//                                          completionHandler: {
+//                                            (success) in
+//                                            print("Open \(scheme): \(success)")
+//                })
+//            } else {
+//                let success = UIApplication.shared.openURL(url)
+//                print("Open \(scheme): \(success)")
+//            }
+//        }
+//    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
@@ -71,7 +71,7 @@ extension InfoViewController: UITableViewDataSource, UITableViewDelegate {
             let safVC = SFSafariViewController(url: NSURL(string: self.homeUrlString)! as URL)
             self.present(safVC, animated: true, completion: nil)
             
-            //            open(scheme: "http://www.hapman.com")
+            //            open(scheme: "http://www.hapman.com") //provides method for opening links in Safari
         } else if indexPath.row == 2 {
             let safVC = SFSafariViewController(url: NSURL(string: self.contactUrlString)! as URL)
             self.present(safVC, animated: true, completion: nil)
