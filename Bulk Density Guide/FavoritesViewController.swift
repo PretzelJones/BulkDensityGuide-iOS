@@ -10,6 +10,7 @@ import UIKit
 
 class FavoritesViewController: UIViewController {
     
+    private let menuView = UIView()
     @IBOutlet var tableView: UITableView!
     
     @IBAction func shareNavButton(_ sender: UIBarButtonItem) {
@@ -27,12 +28,19 @@ class FavoritesViewController: UIViewController {
             self.present(activityVC, animated: true, completion: nil)
         }
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         addNavBarImage()
         convertArray()
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        menuView.center = view.center
+    }
+    
     
     func addNavBarImage() {
         
@@ -55,7 +63,58 @@ class FavoritesViewController: UIViewController {
     }
 }
 
+extension FavoritesViewController: UIContextMenuInteractionDelegate {
+    
+    @available(iOS 13.0, *)
+    func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
+            let copy = UIAction(title: "Copy", image: UIImage(systemName: "doc.on.clipboard")) { action in
+            }
+            let share = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { action in
+            }
+            let remove = UIAction(title: "Remove", image: UIImage(systemName: "trash"), attributes: .destructive) { action in
+            }
+            return UIMenu(title: "", children: [copy, share, remove])
+        }
+    }
+}
+
 extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
+    @available(iOS 13.0, *)
+    func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        //let item = sharedData[indexPath.row]
+        
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
+            
+            let copy = UIAction(title: "Copy", image: UIImage(systemName: "doc.on.clipboard")) { action in
+                let cell = tableView.cellForRow(at: indexPath)
+                UIPasteboard.general.string = cell?.textLabel?.text
+            }
+            let share = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { action in
+                var data: String
+                data = sharedData[indexPath.row]
+                let shareItems: [Any] = [data]
+                let activityVC = UIActivityViewController(activityItems: shareItems, applicationActivities: nil)
+                
+                if let popoverController = activityVC.popoverPresentationController { //added to account for different handling in iPad OS
+                    popoverController.sourceRect = CGRect(x: UIScreen.main.bounds.width / 1, y: UIScreen.main.bounds.height / 1, width: 0, height: 0)
+                    popoverController.sourceView = self.view
+                    popoverController.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
+                }
+                self.present(activityVC, animated: true, completion: nil)
+            }
+            let remove = UIAction(title: "Remove", image: UIImage(systemName: "trash")) { action in
+                sharedData.remove(at: indexPath.row)
+                saveArray()
+                tableView.beginUpdates()
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+                tableView.endUpdates()
+            }
+            
+            
+            return UIMenu(title: "", children: [copy, share, remove])
+        }
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -97,11 +156,11 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
                 
                 self.present(alert, animated: true, completion: nil)
             }
-//            if #available(iOS 13.0, *) { // used to account for system SF icons not available in > iOS 13
-//                deleteAction.image = UIImage(systemName: "trash.fill")
-//            } else {
-//                // Fallback to default action
-//            }
+            //            if #available(iOS 13.0, *) { // used to account for system SF icons not available in > iOS 13
+            //                deleteAction.image = UIImage(systemName: "trash.fill")
+            //            } else {
+            //                // Fallback to default action
+            //            }
             deleteAction.backgroundColor = .systemRed
             return UISwipeActionsConfiguration(actions: [deleteAction])
     }
@@ -129,12 +188,12 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
             }
             self.present(activityVC, animated: true, completion: nil)
         }
-//        if #available(iOS 13.0, *) { // used to account for system SF icons not available in > iOS 13
-//            copyAction.image = UIImage(systemName: "doc.on.clipboard.fill")
-//            shareAction.image = UIImage(systemName: "square.and.arrow.up.fill")
-//        } else {
-//            // fall back to default action
-//        }
+        //        if #available(iOS 13.0, *) { // used to account for system SF icons not available in > iOS 13
+        //            copyAction.image = UIImage(systemName: "doc.on.clipboard.fill")
+        //            shareAction.image = UIImage(systemName: "square.and.arrow.up.fill")
+        //        } else {
+        //            // fall back to default action
+        //        }
         copyAction.backgroundColor = .systemBlue
         shareAction.backgroundColor = .systemYellow
         let configuration = UISwipeActionsConfiguration(actions: [copyAction, shareAction])
