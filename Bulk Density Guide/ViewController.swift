@@ -1795,12 +1795,12 @@ extension ViewController: UITableViewDelegate {
             self.present(activityVC, animated: true, completion: nil)
         }
         
-        if #available(iOS 13.0, *) { // used to account for system SF icons not available in > iOS 13
-            copyAction.image = UIImage(systemName: "doc.on.clipboard.fill")
-            shareAction.image = UIImage(systemName: "square.and.arrow.up.fill")
-        } else {
-            // fall back to default action
-        }
+//        if #available(iOS 13.0, *) { // used to account for system SF icons not available in > iOS 13
+//            copyAction.image = UIImage(systemName: "doc.on.clipboard.fill")
+//            shareAction.image = UIImage(systemName: "square.and.arrow.up.fill")
+//        } else {
+//            // fall back to default action
+//        }
         shareAction.backgroundColor = .systemYellow
         copyAction.backgroundColor = .systemBlue
         let configuration = UISwipeActionsConfiguration(actions: [copyAction, shareAction])
@@ -1821,11 +1821,11 @@ extension ViewController: UITableViewDelegate {
                 saveArray()
                 completionHandler(true)
             }
-            if #available(iOS 13.0, *) { // used to account for system SF icons not available in > iOS 13
-                favoriteAction.image = UIImage(systemName: "pin.fill")
-            } else {
-                // fall back to default action
-            }
+//            if #available(iOS 13.0, *) { // used to account for system SF icons not available in > iOS 13
+//                favoriteAction.image = UIImage(systemName: "pin.fill")
+//            } else {
+//                // fall back to default action
+//            }
             favoriteAction.backgroundColor = .systemOrange
             let configuration = UISwipeActionsConfiguration(actions: [favoriteAction])
             return configuration

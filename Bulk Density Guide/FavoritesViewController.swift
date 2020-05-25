@@ -97,11 +97,11 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
                 
                 self.present(alert, animated: true, completion: nil)
             }
-            if #available(iOS 13.0, *) { // used to account for system SF icons not available in > iOS 13
-                deleteAction.image = UIImage(systemName: "trash.fill")
-            } else {
-                // Fallback to default action
-            }
+//            if #available(iOS 13.0, *) { // used to account for system SF icons not available in > iOS 13
+//                deleteAction.image = UIImage(systemName: "trash.fill")
+//            } else {
+//                // Fallback to default action
+//            }
             deleteAction.backgroundColor = .systemRed
             return UISwipeActionsConfiguration(actions: [deleteAction])
     }
@@ -129,12 +129,12 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
             }
             self.present(activityVC, animated: true, completion: nil)
         }
-        if #available(iOS 13.0, *) { // used to account for system SF icons not available in > iOS 13
-            copyAction.image = UIImage(systemName: "doc.on.clipboard.fill")
-            shareAction.image = UIImage(systemName: "square.and.arrow.up.fill")
-        } else {
-            // fall back to default action
-        }
+//        if #available(iOS 13.0, *) { // used to account for system SF icons not available in > iOS 13
+//            copyAction.image = UIImage(systemName: "doc.on.clipboard.fill")
+//            shareAction.image = UIImage(systemName: "square.and.arrow.up.fill")
+//        } else {
+//            // fall back to default action
+//        }
         copyAction.backgroundColor = .systemBlue
         shareAction.backgroundColor = .systemYellow
         let configuration = UISwipeActionsConfiguration(actions: [copyAction, shareAction])

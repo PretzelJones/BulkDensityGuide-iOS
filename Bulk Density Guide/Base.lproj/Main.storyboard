@@ -121,7 +121,7 @@
             </objects>
             <point key="canvasLocation" x="2098.5507246376815" y="123.88392857142857"/>
         </scene>
-        <!--Favorites-->
+        <!--Favorites View Controller-->
         <scene sceneID="Kkk-8U-8W5">
             <objects>
                 <viewController id="hIs-GZ-lNd" customClass="FavoritesViewController" customModule="Bulk_Density_Guide" customModuleProvider="target" sceneMemberID="viewController">
@@ -160,7 +160,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gnJ-Ex-dLI"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Favorites" id="Bkd-sm-nn4">
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="Bkd-sm-nn4">
                         <barButtonItem key="rightBarButtonItem" title="Share" id="EDU-rJ-MAm">
                             <connections>
                                 <action selector="shareNavButton:" destination="hIs-GZ-lNd" id="sCc-Va-qEh"/>
