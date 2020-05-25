@@ -14,11 +14,16 @@ class FavoritesViewController: UIViewController {
     
     @IBAction func shareNavButton(_ sender: UIBarButtonItem) {
         let shareItems: [Any] = sharedData
-        let activityVC = UIActivityViewController(activityItems: shareItems, applicationActivities: nil)
-        activityVC.popoverPresentationController?.barButtonItem = sender
-        self.present(activityVC, animated: true, completion: nil)
+        if shareItems.isEmpty {
+            let alert = UIAlertController(title: "Your Favorites list is empty", message: "You can populate your list by adding items from the previous screen", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+        } else {
+            let activityVC = UIActivityViewController(activityItems: shareItems, applicationActivities: nil)
+            activityVC.popoverPresentationController?.barButtonItem = sender
+            self.present(activityVC, animated: true, completion: nil)
+        }
     }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
