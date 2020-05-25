@@ -15,11 +15,11 @@ class FavoritesViewController: UIViewController {
     @IBAction func shareNavButton(_ sender: UIBarButtonItem) {
         let shareItems: [Any] = sharedData
         if shareItems.isEmpty {
-            let alert = UIAlertController(title: "Nothing to share", message: "Add items to your favorites list first", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Nothing to share", message: "Add items from the guide to your favorites list to share in other apps", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
                 self.performSegue(withIdentifier: "returnSegue", sender: self) //returns user to the main VC via segue returnSegue via yellow square to target VC
             }))
-//            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil)) // just dismisses the alert
+            //alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil)) // just dismisses the alert
             self.present(alert, animated: true)
         } else {
             let activityVC = UIActivityViewController(activityItems: shareItems, applicationActivities: nil)
@@ -30,7 +30,28 @@ class FavoritesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        addNavBarImage()
         convertArray()
+    }
+    
+    func addNavBarImage() {
+        
+        let navController = navigationController!
+        
+        let image = UIImage(named: "hapman_title_logo")
+        let imageView = UIImageView(image: image)
+        
+        let bannerWidth = navController.navigationBar.frame.size.width
+        let bannerHeight = navController.navigationBar.frame.size.height
+        
+        let bannerX = bannerWidth / 2 - image!.size.width / 2
+        let bannerY = bannerHeight / 2 - image!.size.height / 2
+        
+        imageView.frame = CGRect(x: bannerX, y: bannerY, width: bannerWidth, height: bannerHeight)
+        imageView.contentMode = .top
+        
+        navigationItem.titleView = imageView
+        
     }
 }
 

@@ -1721,7 +1721,6 @@ class ViewController: UIViewController {
         "Zircon \n 32 lb/ft³ 0.51 g/cm³",
         "Zircon Flour \n 26.5 lb/ft³ 0.42 g/cm³",
         "Zircumium Basic Carbonate \n 7.2 lb/ft³ 0.12 g/cm³",
-        
     ]
     
     var searchMaterial = [String]()

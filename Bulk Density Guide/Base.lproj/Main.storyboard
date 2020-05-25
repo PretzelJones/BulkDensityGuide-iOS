@@ -64,7 +64,7 @@
                         <viewLayoutGuide key="safeArea" id="MDm-iT-mjj"/>
                     </view>
                     <navigationItem key="navigationItem" title="About" largeTitleDisplayMode="never" id="QuC-y9-cF2">
-                        <barButtonItem key="backBarButtonItem" title=" " id="PDq-kQ-kHf"/>
+                        <barButtonItem key="backBarButtonItem" title="Guide" id="PDq-kQ-kHf"/>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="t7d-qb-Yby" id="70P-ot-hCu"/>
@@ -160,8 +160,8 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gnJ-Ex-dLI"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Favorites" largeTitleDisplayMode="never" id="Bkd-sm-nn4">
-                        <barButtonItem key="rightBarButtonItem" title="Share" image="square.and.arrow.up" catalog="system" id="EDU-rJ-MAm">
+                    <navigationItem key="navigationItem" title="Favorites" id="Bkd-sm-nn4">
+                        <barButtonItem key="rightBarButtonItem" title="Share" id="EDU-rJ-MAm">
                             <connections>
                                 <action selector="shareNavButton:" destination="hIs-GZ-lNd" id="sCc-Va-qEh"/>
                             </connections>
@@ -237,15 +237,15 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Bulk Material Density Guide" id="496-JK-zCf">
-                        <barButtonItem key="backBarButtonItem" title=" " id="VmA-Mz-ZUB"/>
-                        <barButtonItem key="leftBarButtonItem" title="Saved" image="pin" catalog="system" id="Rj3-MX-86O">
+                        <barButtonItem key="backBarButtonItem" title="Guide" id="VmA-Mz-ZUB"/>
+                        <barButtonItem key="leftBarButtonItem" title="Saved" id="Rj3-MX-86O">
                             <color key="tintColor" red="0.18039215689999999" green="0.41568627450000001" blue="0.65490196079999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
                                 <action selector="favoritesButtonArrayUpdate:" destination="BYZ-38-t0r" id="DU1-7l-PXC"/>
                                 <segue destination="hIs-GZ-lNd" kind="show" id="Xqu-IM-Ees"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="    Info" image="info.circle" catalog="system" id="9oX-al-iwd">
+                        <barButtonItem key="rightBarButtonItem" title="    Info" id="9oX-al-iwd">
                             <inset key="imageInsets" minX="0.0" minY="0.0" maxX="-10" maxY="0.0"/>
                             <color key="tintColor" red="0.18039215689999999" green="0.41568627450000001" blue="0.65490196079999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
@@ -295,8 +295,5 @@
     <resources>
         <image name="app_banner" width="1024" height="500"/>
         <image name="hapman_logo_clean" width="496" height="262"/>
-        <image name="info.circle" catalog="system" width="128" height="121"/>
-        <image name="pin" catalog="system" width="119" height="128"/>
-        <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
     </resources>
 </document>
