@@ -31,6 +31,7 @@ func retrieveArray() {
 
 class ViewController: UIViewController {
     
+    private let menuView = UIView()
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet var tableView: UITableView!
     
@@ -1738,6 +1739,10 @@ class ViewController: UIViewController {
         addNavBarImage() //Hapman logo at center of navbar
         
     }
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        menuView.center = view.center
+    }
     
     func addNavBarImage() {
         
@@ -1760,7 +1765,64 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: UITableViewDelegate {
+extension ViewController: UIContextMenuInteractionDelegate {
+    
+    @available(iOS 13.0, *)
+    func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
+            let copy = UIAction(title: "Copy", image: UIImage(systemName: "doc.on.clipboard")) { action in
+            }
+            let share = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { action in
+            }
+            let save = UIAction(title: "Save", image: UIImage(systemName: "pin"), attributes: .destructive) { action in
+            }
+            return UIMenu(title: "", children: [copy, share, save])
+        }
+    }
+}
+
+extension ViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    @available(iOS 13.0, *)
+    func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        //let item = sharedData[indexPath.row]
+        
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
+            
+            let copy = UIAction(title: "Copy", image: UIImage(systemName: "doc.on.clipboard")) { action in
+                let cell = tableView.cellForRow(at: indexPath)
+                UIPasteboard.general.string = cell?.textLabel?.text
+            }
+            let share = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { action in
+                var data: String
+                if self.searching {
+                    data = self.searchMaterial[indexPath.row]
+                } else {
+                    data = self.materialData[indexPath.row]
+                }
+                let shareItems: [Any] = [data]
+                let activityVC = UIActivityViewController(activityItems: shareItems, applicationActivities: nil)
+                
+                if let popoverController = activityVC.popoverPresentationController { //added to account for different handling in iPad OS
+                    popoverController.sourceRect = CGRect(x: UIScreen.main.bounds.width / 1, y: UIScreen.main.bounds.height / 1, width: 0, height: 0)
+                    popoverController.sourceView = self.view
+                    popoverController.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
+                }
+                self.present(activityVC, animated: true, completion: nil)
+            }
+            let save = UIAction(title: "Save", image: UIImage(systemName: "pin")) { action in
+                var data: String
+                if self.searching {
+                    data = self.searchMaterial[indexPath.row]
+                } else {
+                    data = self.materialData[indexPath.row]
+                }
+                sharedData.append(data)
+                saveArray()
+            }
+            return UIMenu(title: "", children: [save, copy, share])
+        }
+    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
@@ -1795,12 +1857,12 @@ extension ViewController: UITableViewDelegate {
             self.present(activityVC, animated: true, completion: nil)
         }
         
-//        if #available(iOS 13.0, *) { // used to account for system SF icons not available in > iOS 13
-//            copyAction.image = UIImage(systemName: "doc.on.clipboard.fill")
-//            shareAction.image = UIImage(systemName: "square.and.arrow.up.fill")
-//        } else {
-//            // fall back to default action
-//        }
+        //        if #available(iOS 13.0, *) { // used to account for system SF icons not available in > iOS 13
+        //            copyAction.image = UIImage(systemName: "doc.on.clipboard.fill")
+        //            shareAction.image = UIImage(systemName: "square.and.arrow.up.fill")
+        //        } else {
+        //            // fall back to default action
+        //        }
         shareAction.backgroundColor = .systemYellow
         copyAction.backgroundColor = .systemBlue
         let configuration = UISwipeActionsConfiguration(actions: [copyAction, shareAction])
@@ -1821,19 +1883,19 @@ extension ViewController: UITableViewDelegate {
                 saveArray()
                 completionHandler(true)
             }
-//            if #available(iOS 13.0, *) { // used to account for system SF icons not available in > iOS 13
-//                favoriteAction.image = UIImage(systemName: "pin.fill")
-//            } else {
-//                // fall back to default action
-//            }
+            //            if #available(iOS 13.0, *) { // used to account for system SF icons not available in > iOS 13
+            //                favoriteAction.image = UIImage(systemName: "pin.fill")
+            //            } else {
+            //                // fall back to default action
+            //            }
             favoriteAction.backgroundColor = .systemOrange
             let configuration = UISwipeActionsConfiguration(actions: [favoriteAction])
             return configuration
     }
     
-}
-
-extension ViewController: UITableViewDataSource {
+    
+    
+    //extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searching {
