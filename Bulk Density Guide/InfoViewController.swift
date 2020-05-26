@@ -89,7 +89,7 @@ extension InfoViewController: UITableViewDataSource, UITableViewDelegate {
             //            open(scheme: "http://www.hapman.com/the-hapman-difference")
         } else if indexPath.row == 5 {
             
-            let shareItem : NSURL = NSURL(string: "https://apps.apple.com/us/app/spooky-halloween-sounds/id1437079754")!
+            let shareItem : NSURL = NSURL(string: "https://apps.apple.com/us/app/bulk-material-density-guide/id1454584553")!
             
             let activityViewController : UIActivityViewController = UIActivityViewController(
                 activityItems: [shareItem], applicationActivities: nil)

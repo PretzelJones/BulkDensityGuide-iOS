@@ -1892,11 +1892,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             let configuration = UISwipeActionsConfiguration(actions: [favoriteAction])
             return configuration
     }
-    
-    
-    
-    //extension ViewController: UITableViewDataSource {
-    
+
+    //extension ViewController: UITableViewDataSource { //if needed to seperate delegate and datasource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searching {
             return searchMaterial.count
