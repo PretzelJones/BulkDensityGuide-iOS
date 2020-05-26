@@ -1774,9 +1774,9 @@ extension ViewController: UIContextMenuInteractionDelegate {
             }
             let share = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { action in
             }
-            let save = UIAction(title: "Save", image: UIImage(systemName: "pin"), attributes: .destructive) { action in
+            let save = UIAction(title: "Save", image: UIImage(systemName: "pin")) { action in
             }
-            return UIMenu(title: "", children: [copy, share, save])
+            return UIMenu(title: "", children: [save, copy, share])
         }
     }
 }

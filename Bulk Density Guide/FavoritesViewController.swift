@@ -74,7 +74,7 @@ extension FavoritesViewController: UIContextMenuInteractionDelegate {
             }
             let remove = UIAction(title: "Remove", image: UIImage(systemName: "trash"), attributes: .destructive) { action in
             }
-            return UIMenu(title: "", children: [copy, share, remove])
+            return UIMenu(title: "", children: [remove, copy, share])
         }
     }
 }
@@ -112,7 +112,7 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
             }
             
             
-            return UIMenu(title: "", children: [copy, share, remove])
+            return UIMenu(title: "", children: [remove, copy, share])
         }
     }
     
