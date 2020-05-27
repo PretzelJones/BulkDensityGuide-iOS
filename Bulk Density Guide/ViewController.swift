@@ -16,22 +16,26 @@ func convertArray() { //fix duplicates by converting to set then back
 }
 
 struct Keys {
+    
     static let arrayKey = "arrayKey"
 }
 
 let defaults = UserDefaults.standard
 
 func saveArray() {
+    
     defaults.set(sharedData, forKey: Keys.arrayKey)
 }
 
 func retrieveArray() {
+    
     sharedData = defaults.array(forKey: Keys.arrayKey) as? [String] ?? []
 }
 
 class ViewController: UIViewController {
     
     private let menuView = UIView()
+    
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet var tableView: UITableView!
     
@@ -1831,6 +1835,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
         let copyAction = UIContextualAction(style: .normal, title: "Copy") { (_, _, completionHandler) in
             
             let cell = tableView.cellForRow(at: indexPath)
@@ -1840,6 +1845,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         let shareAction = UIContextualAction(style: .normal, title: "Share") { (_, _, completionHandler) in
+            
             var data: String
             if self.searching {
                 data = self.searchMaterial[indexPath.row]
@@ -1869,9 +1875,9 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         return configuration
     }
     
-    
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath)
         -> UISwipeActionsConfiguration? {
+            
             let favoriteAction = UIContextualAction(style: .normal, title: "Save") { (_, _, completionHandler) in
                 var data: String
                 if self.searching {
@@ -1892,9 +1898,10 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             let configuration = UISwipeActionsConfiguration(actions: [favoriteAction])
             return configuration
     }
-
+    
     //extension ViewController: UITableViewDataSource { //if needed to seperate delegate and datasource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         if searching {
             return searchMaterial.count
         } else {
@@ -1903,6 +1910,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.numberOfLines = 0
         if searching {
@@ -1918,6 +1926,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 extension ViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
         searchBar.setShowsCancelButton(true, animated: true)
         searchMaterial = materialData.filter {return $0.localizedCaseInsensitiveContains(searchText)}
         searching = true
@@ -1925,6 +1934,7 @@ extension ViewController: UISearchBarDelegate {
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        
         searchBar.setShowsCancelButton(false, animated: true)
         searching = false
         searchBar.text = ""
@@ -1932,6 +1942,7 @@ extension ViewController: UISearchBarDelegate {
     }
     
     func showSearchBar() { //enables auto hiding of searchBar - not working
+        
         let searchController = UISearchController(searchResultsController: nil)
         navigationItem.hidesSearchBarWhenScrolling = false
         navigationItem.searchController = searchController
@@ -1946,12 +1957,14 @@ extension ViewController: UISearchBarDelegate {
 extension UIViewController {
     
     func hideKeyboardWhenTappedAround() {
+        
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard(_:)))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
     }
     
     @objc func dismissKeyboard(_ sender: UITapGestureRecognizer) {
+        
         view.endEditing(true)
         
         if let nav = self.navigationController {
