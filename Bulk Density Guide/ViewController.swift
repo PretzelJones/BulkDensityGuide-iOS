@@ -1770,6 +1770,7 @@ extension ViewController: UIContextMenuInteractionDelegate {
     @available(iOS 13.0, *)
     func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
+            
             let copy = UIAction(title: "Copy", image: UIImage(systemName: "doc.on.clipboard")) { action in
             }
             let share = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { action in
@@ -1785,7 +1786,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     @available(iOS 13.0, *)
     func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-        //let item = sharedData[indexPath.row]
         
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
             
