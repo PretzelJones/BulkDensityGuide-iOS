@@ -108,7 +108,7 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
             }
             let remove = UIAction(title: "Remove", image: UIImage(systemName: "trash")) { action in
                 
-                let dialogMessage = UIAlertController(title: "Confirm", message: "Are you sure you want to delete this?", preferredStyle: .alert)
+                let dialogMessage = UIAlertController(title: "Confirm", message: "Are you sure you want to remove this?", preferredStyle: .alert)
                 let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
                      sharedData.remove(at: indexPath.row)
                      saveArray()
@@ -153,7 +153,7 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
         -> UISwipeActionsConfiguration? {
             
             let deleteAction = UIContextualAction(style: .destructive, title: "Remove") { (action, view, completion) in
-                let dialogMessage = UIAlertController(title: "Confirm", message: "Are you sure you want to delete this?", preferredStyle: .alert)
+                let dialogMessage = UIAlertController(title: "Confirm", message: "Are you sure you want to remove this?", preferredStyle: .alert)
                 let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
                      sharedData.remove(at: indexPath.row)
                      saveArray()

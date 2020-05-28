@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Bulk Density Guide.xcodeproj">
+      location = "group:/Users/sean/Projects/iOS/BulkDensityGuide/Bulk Density Guide.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
