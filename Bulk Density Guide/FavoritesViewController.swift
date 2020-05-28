@@ -11,9 +11,11 @@ import UIKit
 class FavoritesViewController: UIViewController {
     
     private let menuView = UIView()
+    
     @IBOutlet var tableView: UITableView!
     
     @IBAction func shareNavButton(_ sender: UIBarButtonItem) {
+        
         let shareItems: [Any] = sharedData
         if shareItems.isEmpty {
             let alert = UIAlertController(title: "Nothing to share", message: "Add items from the guide to your favorites list to share in other apps", preferredStyle: .alert)
@@ -38,9 +40,9 @@ class FavoritesViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        
         menuView.center = view.center
     }
-    
     
     func addNavBarImage() {
         
@@ -59,7 +61,6 @@ class FavoritesViewController: UIViewController {
         imageView.contentMode = .top
         
         navigationItem.titleView = imageView
-        
     }
 }
 
@@ -67,6 +68,7 @@ extension FavoritesViewController: UIContextMenuInteractionDelegate {
     
     @available(iOS 13.0, *)
     func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
+        
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
             let copy = UIAction(title: "Copy", image: UIImage(systemName: "doc.on.clipboard")) { action in
             }
@@ -82,15 +84,16 @@ extension FavoritesViewController: UIContextMenuInteractionDelegate {
 extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
     @available(iOS 13.0, *)
     func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-        //let item = sharedData[indexPath.row]
         
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
             
             let copy = UIAction(title: "Copy", image: UIImage(systemName: "doc.on.clipboard")) { action in
+                
                 let cell = tableView.cellForRow(at: indexPath)
                 UIPasteboard.general.string = cell?.textLabel?.text
             }
             let share = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { action in
+                
                 var data: String
                 data = sharedData[indexPath.row]
                 let shareItems: [Any] = [data]
@@ -104,14 +107,26 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
                 self.present(activityVC, animated: true, completion: nil)
             }
             let remove = UIAction(title: "Remove", image: UIImage(systemName: "trash")) { action in
-                sharedData.remove(at: indexPath.row)
-                saveArray()
-                tableView.beginUpdates()
-                tableView.deleteRows(at: [indexPath], with: .automatic)
-                tableView.endUpdates()
+                
+                let dialogMessage = UIAlertController(title: "Confirm", message: "Are you sure you want to delete this?", preferredStyle: .alert)
+                let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+                     sharedData.remove(at: indexPath.row)
+                     saveArray()
+                     tableView.beginUpdates()
+                     tableView.deleteRows(at: [indexPath], with: .automatic)
+                     tableView.endUpdates()
+                })
+                let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+                    print("Cancel button tapped")
+                }
+
+                dialogMessage.addAction(ok)
+                dialogMessage.addAction(cancel)
+                
+                // Present dialog message to user
+                self.present(dialogMessage, animated: true, completion: nil)
+                
             }
-            
-            
             return UIMenu(title: "", children: [remove, copy, share])
         }
     }
@@ -136,25 +151,25 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath)
         -> UISwipeActionsConfiguration? {
+            
             let deleteAction = UIContextualAction(style: .destructive, title: "Remove") { (action, view, completion) in
-                let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-                alert.addAction(UIAlertAction(title: "Remove", style: .default) { (action) in
-                    
-                    sharedData.remove(at: indexPath.row)
-                    saveArray()
-                    tableView.beginUpdates()
-                    tableView.deleteRows(at: [indexPath], with: .automatic)
-                    tableView.endUpdates()
-                    completion(true)
+                let dialogMessage = UIAlertController(title: "Confirm", message: "Are you sure you want to delete this?", preferredStyle: .alert)
+                let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+                     sharedData.remove(at: indexPath.row)
+                     saveArray()
+                     tableView.beginUpdates()
+                     tableView.deleteRows(at: [indexPath], with: .automatic)
+                     tableView.endUpdates()
                 })
-                alert.addAction(UIAlertAction(title: "Cancel", style: .default) { (action) in
-                    completion(false)
-                })
+                let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+                    print("Cancel button tapped")
+                }
+
+                dialogMessage.addAction(ok)
+                dialogMessage.addAction(cancel)
                 
-                alert.popoverPresentationController?.sourceView = view
-                alert.popoverPresentationController?.sourceRect = view.bounds
-                
-                self.present(alert, animated: true, completion: nil)
+                // Present dialog message to user
+                self.present(dialogMessage, animated: true, completion: nil)
             }
             //            if #available(iOS 13.0, *) { // used to account for system SF icons not available in > iOS 13
             //                deleteAction.image = UIImage(systemName: "trash.fill")

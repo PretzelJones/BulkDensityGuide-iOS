@@ -49,22 +49,23 @@ class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate 
 
 extension InfoViewController: UITableViewDataSource, UITableViewDelegate {
     
-//    func open(scheme: String) { //provides method for opening links in Safari
-//        if let url = URL(string: scheme) {
-//            if #available(iOS 10, *) {
-//                UIApplication.shared.open(url, options: [:],
-//                                          completionHandler: {
-//                                            (success) in
-//                                            print("Open \(scheme): \(success)")
-//                })
-//            } else {
-//                let success = UIApplication.shared.openURL(url)
-//                print("Open \(scheme): \(success)")
-//            }
-//        }
-//    }
+    //    func open(scheme: String) { //provides method for opening links in Safari
+    //        if let url = URL(string: scheme) {
+    //            if #available(iOS 10, *) {
+    //                UIApplication.shared.open(url, options: [:],
+    //                                          completionHandler: {
+    //                                            (success) in
+    //                                            print("Open \(scheme): \(success)")
+    //                })
+    //            } else {
+    //                let success = UIApplication.shared.openURL(url)
+    //                print("Open \(scheme): \(success)")
+    //            }
+    //        }
+    //    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         if indexPath.row == 0 {
             performSegue(withIdentifier: "aboutSegue", sender: self)
         } else if indexPath.row == 1 {
@@ -109,6 +110,7 @@ extension InfoViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func sendEmail() {
+        
         if MFMailComposeViewController.canSendMail() {
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
@@ -122,6 +124,7 @@ extension InfoViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        
         controller.dismiss(animated: true)
     }
     
@@ -132,6 +135,7 @@ extension InfoViewController: UITableViewDataSource, UITableViewDelegate {
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.numberOfLines = 0
         cell.textLabel?.text = self.aboutData[indexPath.row]
@@ -139,5 +143,4 @@ extension InfoViewController: UITableViewDataSource, UITableViewDelegate {
         
         return cell
     }
-    
 }
