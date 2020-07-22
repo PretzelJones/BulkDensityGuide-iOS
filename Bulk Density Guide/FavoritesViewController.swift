@@ -20,7 +20,7 @@ class FavoritesViewController: UIViewController {
         if shareItems.isEmpty {
             let alert = UIAlertController(title: "Nothing to share", message: "Add items from the guide to your favorites list to share in other apps", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
-                self.performSegue(withIdentifier: "returnSegue", sender: self) //returns user to the main VC via segue returnSegue via yellow square to target VC
+//                self.performSegue(withIdentifier: "returnSegue", sender: self) //returns user to the main VC via segue returnSegue via yellow square to target VC
             }))
             //alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil)) // just dismisses the alert
             self.present(alert, animated: true)
