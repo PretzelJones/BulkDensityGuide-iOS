@@ -8,6 +8,8 @@
 
 import UIKit
 import StoreKit
+import SwiftUI
+import FirebaseCore
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,6 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        // Use Firebase library to configure APIs
+        FirebaseApp.configure()
         //request review configuration code
         let shortestTime: UInt32 = 50
         let longestTime: UInt32 = 500
@@ -24,11 +28,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
-    //initate review request
-    @objc func requestReview() {
-        SKStoreReviewController.requestReview()
-    }
-    
     
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -52,6 +51,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
+}
+
+extension AppDelegate: SKStoreProductViewControllerDelegate {
+    func productViewControllerDidFinish(_ viewController: SKStoreProductViewController) {
+        viewController.dismiss(animated: true, completion: nil)
+    }
     
+    @objc func requestReview() {
+        if let scene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene {
+            SKStoreReviewController.requestReview(in: scene)
+        }
+    }
 }
 

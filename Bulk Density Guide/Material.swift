@@ -7,3 +7,9 @@
 //
 
 import Foundation
+
+struct Material {
+    let name: String
+    let densityLbFt3: Double
+    let densityGmCm3: Double
+}

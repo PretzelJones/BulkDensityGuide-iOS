@@ -20,9 +20,9 @@ class FavoritesViewController: UIViewController {
         if shareItems.isEmpty {
             let alert = UIAlertController(title: "Nothing to share", message: "Add items from the guide to your favorites list to share in other apps", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
-//                self.performSegue(withIdentifier: "returnSegue", sender: self) //returns user to the main VC via segue returnSegue via yellow square to target VC
+                
             }))
-            //alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil)) // just dismisses the alert
+            
             self.present(alert, animated: true)
         } else {
             let activityVC = UIActivityViewController(activityItems: shareItems, applicationActivities: nil)
@@ -110,16 +110,16 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
                 
                 let dialogMessage = UIAlertController(title: "Confirm", message: "Are you sure you want to remove this?", preferredStyle: .alert)
                 let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
-                     sharedData.remove(at: indexPath.row)
-                     saveArray()
-                     tableView.beginUpdates()
-                     tableView.deleteRows(at: [indexPath], with: .automatic)
-                     tableView.endUpdates()
+                    sharedData.remove(at: indexPath.row)
+                    saveArray()
+                    tableView.beginUpdates()
+                    tableView.deleteRows(at: [indexPath], with: .automatic)
+                    tableView.endUpdates()
                 })
                 let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
                     print("Cancel button tapped")
                 }
-
+                
                 dialogMessage.addAction(ok)
                 dialogMessage.addAction(cancel)
                 
@@ -150,34 +150,30 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath)
-        -> UISwipeActionsConfiguration? {
-            
-            let deleteAction = UIContextualAction(style: .destructive, title: "Remove") { (action, view, completion) in
-                let dialogMessage = UIAlertController(title: "Confirm", message: "Are you sure you want to remove this?", preferredStyle: .alert)
-                let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
-                     sharedData.remove(at: indexPath.row)
-                     saveArray()
-                     tableView.beginUpdates()
-                     tableView.deleteRows(at: [indexPath], with: .automatic)
-                     tableView.endUpdates()
-                })
-                let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
-                    print("Cancel button tapped")
-                }
-
-                dialogMessage.addAction(ok)
-                dialogMessage.addAction(cancel)
-                
-                // Present dialog message to user
-                self.present(dialogMessage, animated: true, completion: nil)
+    -> UISwipeActionsConfiguration? {
+        
+        let deleteAction = UIContextualAction(style: .destructive, title: "Remove") { (action, view, completion) in
+            let dialogMessage = UIAlertController(title: "Confirm", message: "Are you sure you want to remove this?", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+                sharedData.remove(at: indexPath.row)
+                saveArray()
+                tableView.beginUpdates()
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+                tableView.endUpdates()
+            })
+            let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+                print("Cancel button tapped")
             }
-            //            if #available(iOS 13.0, *) { // used to account for system SF icons not available in > iOS 13
-            //                deleteAction.image = UIImage(systemName: "trash.fill")
-            //            } else {
-            //                // Fallback to default action
-            //            }
-            deleteAction.backgroundColor = .systemRed
-            return UISwipeActionsConfiguration(actions: [deleteAction])
+            
+            dialogMessage.addAction(ok)
+            dialogMessage.addAction(cancel)
+            
+            // Present dialog message to user
+            self.present(dialogMessage, animated: true, completion: nil)
+        }
+        
+        deleteAction.backgroundColor = .systemRed
+        return UISwipeActionsConfiguration(actions: [deleteAction])
     }
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -196,19 +192,16 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
             let shareItems: [Any] = [data]
             let activityVC = UIActivityViewController(activityItems: shareItems, applicationActivities: nil)
             
-            if let popoverController = activityVC.popoverPresentationController { //added to account for different handling in iPad OS
-                popoverController.sourceRect = CGRect(x: UIScreen.main.bounds.width / 1, y: UIScreen.main.bounds.height / 1, width: 0, height: 0)
-                popoverController.sourceView = self.view
-                popoverController.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
+            if let popoverController = activityVC.popoverPresentationController, let cell = tableView.cellForRow(at: indexPath) {
+                popoverController.sourceView = cell
+                popoverController.sourceRect = cell.bounds
             }
-            self.present(activityVC, animated: true, completion: nil)
+            
+            DispatchQueue.main.async {
+                self.present(activityVC, animated: true, completion: nil)
+            }
         }
-        //        if #available(iOS 13.0, *) { // used to account for system SF icons not available in > iOS 13
-        //            copyAction.image = UIImage(systemName: "doc.on.clipboard.fill")
-        //            shareAction.image = UIImage(systemName: "square.and.arrow.up.fill")
-        //        } else {
-        //            // fall back to default action
-        //        }
+        
         copyAction.backgroundColor = .systemBlue
         shareAction.backgroundColor = .systemYellow
         let configuration = UISwipeActionsConfiguration(actions: [copyAction, shareAction])

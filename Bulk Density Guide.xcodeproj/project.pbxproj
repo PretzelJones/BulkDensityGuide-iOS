@@ -3,10 +3,16 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04178C402AFBF8380011D78F /* MaterialDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04178C3F2AFBF8380011D78F /* MaterialDataService.swift */; };
+		04178C432AFBFB4C0011D78F /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 04178C422AFBFB4C0011D78F /* SwiftSoup */; };
+		04178C452AFBFD980011D78F /* MaterialData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04178C442AFBFD980011D78F /* MaterialData.swift */; };
+		04178C472AFC07260011D78F /* Material.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04178C462AFC07260011D78F /* Material.swift */; };
+		04E26A192AF980E100DB5925 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04E26A182AF980E100DB5925 /* GoogleService-Info.plist */; };
+		04E26A1C2AF983AC00DB5925 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 04E26A1B2AF983AC00DB5925 /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		149CFAB82465FBEF007DB1E7 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149CFAB72465FBEF007DB1E7 /* FavoritesViewController.swift */; };
 		14C5C11022249EA400F22733 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C5C10F22249EA400F22733 /* AppDelegate.swift */; };
 		14C5C11222249EA400F22733 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C5C11122249EA400F22733 /* ViewController.swift */; };
@@ -37,6 +43,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04178C3F2AFBF8380011D78F /* MaterialDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialDataService.swift; sourceTree = "<group>"; };
+		04178C442AFBFD980011D78F /* MaterialData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialData.swift; sourceTree = "<group>"; };
+		04178C462AFC07260011D78F /* Material.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Material.swift; sourceTree = "<group>"; };
+		04E26A182AF980E100DB5925 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		144BFF60246DB5450093DF48 /* Bulk Density Guide.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Bulk Density Guide.entitlements"; sourceTree = "<group>"; };
 		149CFAB72465FBEF007DB1E7 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		14C5C10C22249EA400F22733 /* Bulk Density Guide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bulk Density Guide.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -61,6 +71,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04E26A1C2AF983AC00DB5925 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
+				04178C432AFBFB4C0011D78F /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,7 +116,9 @@
 		14C5C10E22249EA400F22733 /* Bulk Density Guide */ = {
 			isa = PBXGroup;
 			children = (
+				04E26A182AF980E100DB5925 /* GoogleService-Info.plist */,
 				14C5C11122249EA400F22733 /* ViewController.swift */,
+				04178C462AFC07260011D78F /* Material.swift */,
 				149CFAB72465FBEF007DB1E7 /* FavoritesViewController.swift */,
 				F43141022479AC1E00537B0A /* InfoViewController.swift */,
 				F43141042479B44800537B0A /* AboutViewController.swift */,
@@ -114,6 +128,8 @@
 				14C5C11622249EA600F22733 /* Assets.xcassets */,
 				144BFF60246DB5450093DF48 /* Bulk Density Guide.entitlements */,
 				14C5C11B22249EA600F22733 /* Info.plist */,
+				04178C3F2AFBF8380011D78F /* MaterialDataService.swift */,
+				04178C442AFBFD980011D78F /* MaterialData.swift */,
 			);
 			path = "Bulk Density Guide";
 			sourceTree = "<group>";
@@ -152,6 +168,10 @@
 			dependencies = (
 			);
 			name = "Bulk Density Guide";
+			packageProductDependencies = (
+				04E26A1B2AF983AC00DB5925 /* FirebaseAnalyticsWithoutAdIdSupport */,
+				04178C422AFBFB4C0011D78F /* SwiftSoup */,
+			);
 			productName = "Bulk Density Guide";
 			productReference = 14C5C10C22249EA400F22733 /* Bulk Density Guide.app */;
 			productType = "com.apple.product-type.application";
@@ -227,6 +247,10 @@
 				Base,
 			);
 			mainGroup = 14C5C10322249EA400F22733;
+			packageReferences = (
+				04E26A1A2AF983AC00DB5925 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				04178C412AFBFB4C0011D78F /* XCRemoteSwiftPackageReference "SwiftSoup" */,
+			);
 			productRefGroup = 14C5C10D22249EA400F22733 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -244,6 +268,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14C5C11A22249EA600F22733 /* LaunchScreen.storyboard in Resources */,
+				04E26A192AF980E100DB5925 /* GoogleService-Info.plist in Resources */,
 				14C5C11722249EA600F22733 /* Assets.xcassets in Resources */,
 				14C5C11522249EA400F22733 /* Main.storyboard in Resources */,
 			);
@@ -270,10 +295,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04178C472AFC07260011D78F /* Material.swift in Sources */,
 				F43141052479B44800537B0A /* AboutViewController.swift in Sources */,
 				14C5C11222249EA400F22733 /* ViewController.swift in Sources */,
 				149CFAB82465FBEF007DB1E7 /* FavoritesViewController.swift in Sources */,
+				04178C452AFBFD980011D78F /* MaterialData.swift in Sources */,
 				14C5C11022249EA400F22733 /* AppDelegate.swift in Sources */,
+				04178C402AFBF8380011D78F /* MaterialDataService.swift in Sources */,
 				F43141032479AC1E00537B0A /* InfoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -380,7 +408,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -435,7 +463,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -452,15 +480,16 @@
 				CODE_SIGN_ENTITLEMENTS = "Bulk Density Guide/Bulk Density Guide.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = Z4JJZ2GKLM;
 				INFOPLIST_FILE = "Bulk Density Guide/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 1.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bossondesign.bulkdensityguide;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -477,15 +506,16 @@
 				CODE_SIGN_ENTITLEMENTS = "Bulk Density Guide/Bulk Density Guide.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = Z4JJZ2GKLM;
 				INFOPLIST_FILE = "Bulk Density Guide/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 1.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bossondesign.bulkdensityguide;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -617,6 +647,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		04178C412AFBFB4C0011D78F /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scinfu/SwiftSoup.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.6.1;
+			};
+		};
+		04E26A1A2AF983AC00DB5925 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.17.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		04178C422AFBFB4C0011D78F /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 04178C412AFBFB4C0011D78F /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
+		};
+		04E26A1B2AF983AC00DB5925 /* FirebaseAnalyticsWithoutAdIdSupport */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 04E26A1A2AF983AC00DB5925 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsWithoutAdIdSupport;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 14C5C10422249EA400F22733 /* Project object */;
 }

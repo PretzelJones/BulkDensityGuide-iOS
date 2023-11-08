@@ -8,29 +8,26 @@
 
 import Foundation
 
-class FetchService {
-    func fetchMaterialData(from urlString: String, completion: @escaping (Data?, Error?) -> Void) {
+class MaterialDataService {
+    func fetchMaterialData(from urlString: String, completion: @escaping (Result<Data, Error>) -> Void) {
         guard let url = URL(string: urlString) else {
-            let error = NSError(domain: "MaterialServiceError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Invalid URL"])
-            completion(nil, error)
+            completion(.failure(NSError(domain: "MaterialDataServiceError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Invalid URL"])))
             return
         }
         
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let httpResponse = response as? HTTPURLResponse,
-                  httpResponse.statusCode == 200 else {
-                let statusCodeError = NSError(domain: "MaterialServiceError", code: 1, userInfo: [NSLocalizedDescriptionKey: "Failed to fetch data, HTTP status code not OK."])
-                completion(nil, statusCodeError)
-                return
-            }
-            
+        URLSession.shared.dataTask(with: url) { data, response, error in
             if let error = error {
-                completion(nil, error)
+                completion(.failure(error))
+            } else if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
+                if let data = data {
+                    completion(.success(data))
+                } else {
+                    completion(.failure(NSError(domain: "MaterialDataServiceError", code: 2, userInfo: [NSLocalizedDescriptionKey: "No data received"])))
+                }
             } else {
-                completion(data, nil)
+                let statusCode = (response as? HTTPURLResponse)?.statusCode ?? 0
+                completion(.failure(NSError(domain: "MaterialDataServiceError", code: 1, userInfo: [NSLocalizedDescriptionKey: "Unexpected HTTP status code: \(statusCode)"])))
             }
-        }
-        
-        task.resume()
+        }.resume()
     }
 }

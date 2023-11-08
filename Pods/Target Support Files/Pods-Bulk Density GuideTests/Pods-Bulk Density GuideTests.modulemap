@@ -1,6 +1,0 @@
-framework module Pods_Bulk_Density_GuideTests {
-  umbrella header "Pods-Bulk Density GuideTests-umbrella.h"
-
-  export *
-  module * { export * }
-}
