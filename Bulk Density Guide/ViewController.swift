@@ -10,6 +10,10 @@ import UIKit
 import SwiftSoup
 import SwiftUI
 
+struct UserDefaultsKeys {
+    static let materialDataKey = "materialDataKey"
+}
+
 var sharedData = [String]()
 
 func convertArray() { //fix duplicates by converting to set then back
@@ -40,13 +44,8 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet var tableView: UITableView!
-    /*
-    var materialData: [String] {
-        return MaterialDataProvider.materialData
-    }
-    */
     
-    var materialData = [Material]() //working code for fetching and parsing
+    var materialData = [Material]()
     var searchMaterial = [Material]()
     var searching = false
     
@@ -61,15 +60,45 @@ class ViewController: UIViewController {
         hideKeyboardWhenTappedAround() //hides keyboard as user taps anywhere else on screen
         retrieveArray() //retrieves saved array data from userDefaults
         addNavBarImage() //Hapman logo at center of navbar
-
+        loadMaterials() //load data from UserDefaults
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshMaterialData(_:)), for: .valueChanged)
+        tableView.refreshControl = refreshControl
+        
+    }
+    
+    @objc private func refreshMaterialData(_ sender: UIRefreshControl) {
+        fetchMaterials()
+    }
+    
+    func saveMaterials() {
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(materialData) {
+            UserDefaults.standard.set(encoded, forKey: UserDefaultsKeys.materialDataKey)
+        }
+    }
+    
+    func loadMaterials() {
+        if let savedMaterials = UserDefaults.standard.object(forKey: UserDefaultsKeys.materialDataKey) as? Data {
+            let decoder = JSONDecoder()
+            if let loadedMaterials = try? decoder.decode([Material].self, from: savedMaterials) {
+                materialData = loadedMaterials
+            }
+        }
     }
     
     func fetchMaterials() {
-        let urlString = "https://hapman.com/resources-knowledge/tools/bulk-density-guide/"  // Replace with your actual URL
+        let urlString = "https://hapman.com/resources-knowledge/tools/bulk-density-guide/"
         let materialDataService = MaterialDataService()
         
         materialDataService.fetchMaterialData(from: urlString) { [weak self] result in
             DispatchQueue.main.async {
+                // Stop the refresh control if it's displaying
+                if let refreshControl = self?.tableView.refreshControl, refreshControl.isRefreshing {
+                    refreshControl.endRefreshing()
+                }
+                
                 switch result {
                 case .success(let data):
                     // Data was fetched, you can now parse and use it
@@ -89,32 +118,32 @@ class ViewController: UIViewController {
                 let doc = try SwiftSoup.parse(htmlString)
                 // Use the table ID to select the correct table rows
                 let rows = try doc.select("#table_1 tbody tr")
-
+                
                 var newMaterials = [Material]() // Temporary array to hold parsed materials
-
+                
                 for row in rows {
-                    // The second cell (index 1) is the material name
                     let materialName = try row.select("td").get(1).text()
-                    // The third cell (index 2) is the density in lb/ft3
                     let densityLbFt3String = try row.select("td").get(2).text()
-                    // The fourth cell (index 3) is the density in g/cm3
                     let densityGmCm3String = try row.select("td").get(3).text()
                     
-                    if let densityLbFt3 = Double(densityLbFt3String),
-                       let densityGmCm3 = Double(densityGmCm3String) {
+                    if let densityLbFt3 = Double(densityLbFt3String) {
+                        // Attempt to parse the g/cm3 value, but it's okay if it's nil
+                        let densityGmCm3 = Double(densityGmCm3String)
+                        
                         let newMaterial = Material(name: materialName, densityLbFt3: densityLbFt3, densityGmCm3: densityGmCm3)
                         newMaterials.append(newMaterial)
                     } else {
-                        print("Error parsing density values for \(materialName)")
+                        print("Error parsing lb/ft3 density values for \(materialName)")
                     }
                 }
-
+                
                 DispatchQueue.main.async { [weak self] in
-                    // Update the materialData stored property with the new materials
                     self?.materialData = newMaterials
+                    self?.saveMaterials() // Save the materials to UserDefaults
                     self?.tableView.reloadData()
+                    
                 }
-            
+                
             } catch Exception.Error(let type, let message) {
                 print("Error of type \(type) with message: \(message)")
             } catch {
@@ -122,11 +151,17 @@ class ViewController: UIViewController {
             }
         }
     }
-
-
-    // This function will handle errors that may occur during data fetching
     private func handleError(_ error: Error) {
-        // Error handling logic would go here
+        // Error handling logic
+        showAlert(withTitle: "Error", message: "Unable to fetch latest data due to lack of interenet connection. Using cached data instead")
+    }
+    
+    private func showAlert(withTitle title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -165,10 +200,27 @@ extension ViewController: UIContextMenuInteractionDelegate {
             }
             let share = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { action in
             }
-            let save = UIAction(title: "Save", image: UIImage(systemName: "pin")) { action in
+            let save = UIAction(title: "Save", image: UIImage(systemName: "pin")) { [weak self] action in
+                guard let self = self else { return }
+                guard let indexPath = self.determineIndexPathForContextMenuInteraction(interaction) else {
+                    print("Could not determine index path for context menu interaction")
+                    return
+                }
+                let material = self.materialData[indexPath.row]
+                let densityLbFt3Text = "\(material.densityLbFt3) lb/ft³"
+                let densityGmCm3Text = material.densityGmCm3 != nil ? ", \(material.densityGmCm3!) g/cm³" : ""
+                let materialString = "\(material.name)\n\(densityLbFt3Text)\(densityGmCm3Text)"
+                
+                sharedData.append(materialString)
+                saveArray()
             }
             return UIMenu(title: "", children: [save, copy, share])
         }
+    }
+    
+    func determineIndexPathForContextMenuInteraction(_ interaction: UIContextMenuInteraction) -> IndexPath? {
+        let location = interaction.location(in: self.tableView)
+        return self.tableView.indexPathForRow(at: location)
     }
 }
 
@@ -257,7 +309,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
                 self.present(activityVC, animated: true, completion: nil)
             }
         }
-
+        
         shareAction.backgroundColor = .systemYellow
         copyAction.backgroundColor = .systemBlue
         let configuration = UISwipeActionsConfiguration(actions: [copyAction, shareAction])
@@ -297,7 +349,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.numberOfLines = 0 // Allows label to have multiple lines
         
@@ -308,12 +359,15 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             material = materialData[indexPath.row]
         }
         
+        // Prepare the density text, check if `densityGmCm3` is nil
+        let densityLbFt3Text = "\(material.densityLbFt3) lb/ft³"
+        let densityGmCm3Text = material.densityGmCm3 != nil ? ", \(material.densityGmCm3!) g/cm³" : ""
+        
         // Set the material name on the first line and densities on the second line
-        cell.textLabel?.text = "\(material.name)\n\(material.densityLbFt3) lb/ft³, \(material.densityGmCm3) g/cm³"
+        cell.textLabel?.text = "\(material.name)\n\(densityLbFt3Text)\(densityGmCm3Text)"
         
         return cell
     }
-
 }
 
 extension ViewController: UISearchBarDelegate {

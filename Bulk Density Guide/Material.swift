@@ -8,8 +8,8 @@
 
 import Foundation
 
-struct Material {
+struct Material: Codable {
     let name: String
     let densityLbFt3: Double
-    let densityGmCm3: Double
+    let densityGmCm3: Double?
 }
